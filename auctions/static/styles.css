@@ -1,3 +1,8 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 .mynav{
     width: 100%;
     height: 65vh;
@@ -5,48 +10,95 @@
     background-size: cover;
     background-position: center;
 }
-.sponser{
-    
-    width: 580px;
-    margin-top: 270px;
-    color: #fff;
-}
-.sponser h1{
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    font-size: 70px;
-    margin-left: 100px;
-    font-weight: 600;
-    transition: .3s ease-in-out;
-}
-.sponser:hover {
-    -webkit-text-stroke: 2px #fff;
-     color: transparent;
-    
-}
 nav{
     color: #fff;
+    padding-top: 40px;
 }
 .brand{
-    font-size: 50px;
-    padding-top: 30px;
-    
+    font-size: 35px;
+    margin-top: -14px;
 }
+
 .nav {
     display: flex;
-    justify-content: space-around;
-    
-    
+    justify-content: space-around;      
 }
 .links{
-    display: flex;
-    padding-top: 60px;
-    
+    display: flex;    
 }
 .links li {
     margin-right: 35px;
+    font-size: 20px;
+}
+.links li a {
+    text-decoration: none;
+    color: #fff;
+}
+.links li a:hover ,
+.brand:hover,
+.icons:hover {
+    color: aqua;  
+    transition: .4s ease-in-out;
+    cursor: pointer;
 }
 .icons{
-    padding-top: 40px;
+    font-size: 20px;
+}
+.toggle-button {
+    position: absolute;
+    top: 2.6rem;
+    right: 1.8rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+}
+.toggle-button .bar {
+    height: 3px;
+    width: 100%;
+    background-color: white;
+    border-radius: 10px;
+}
+
+@media (max-width: 850px) {
+    .toggle-button {
+        display: flex;
+    }
+   
+    .links {
+        display: none;
+        width: 100%;
+    }
+    .nav {
+        flex-direction: column;
+        align-items: center;
+    }
+    .icons{
+        display: none;
+        width: 100%;
+    }
+    .brand{
+        position: absolute;
+        left: 38px;
+    }
+    .links ul {
+        width: 100%;
+        flex-direction: column;
+    }
+    .links li {
+        text-align: center;
+    }
+    .links li a {
+        padding: 0 1rem;
+    }
+   
+    .links.active {
+        display: flex;
+        flex-direction: column;  
+        margin-top: 50px;
+    }
+    
+    
+    
 }
