@@ -6,25 +6,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tukma</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://kit.fontawesome.com/fdc9474d3f.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav class="flex justify-around bg-[url('static/lam1.jpg')] h-[20rem]">
-        <img src="static/lam1.jpg" >
-        <div><h1>Tukma</h1></div>
-        <div>
-            <ul class="flex gap-x-8">
-                <li>Home</li>
-                <li>Shop</li>
-                <li>Car Wash</li>
-                <li>New Post</li>
-                <li>Contacts</li>
-            </ul>
+    <div class="mynav">
+        <nav class="nav"> 
+            <div>
+                <h1 class="brand">Tukma</h1>
+            </div>
+            <div>
+                <ul class="links">
+                    <li><a>Home</a></li>
+                    <li><a>Shop</a></li>
+                    <li><a>Car Wash</a></li>
+                    <li><a>New Post</a></li>
+                    <li><a>Contacts</a></li>
+                </ul>
+            </div>
+            <div class="icons">
+                <i class="fa-light fa-heart"></i>
+            </div>
+        </nav>
+        <div class="sponser">
+            <h1>LOOK GOOD</h1>
+            <h1>DRIVE BETTER</h1>
         </div>
-        <div>
-            <i class="fa-light fa-heart"></i>
-        </div>
-    </nav>
+    </div>
+    
+
 </body>
 </html>
