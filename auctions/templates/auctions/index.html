@@ -6,9 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tukma</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Odor+Mean+Chey&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'styles.css' %}">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://kit.fontawesome.com/fdc9474d3f.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/4d0169ec99.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="mynav">
@@ -31,11 +33,62 @@
                     
                 </ul>
             </div>
-            <div class="icons">
-                <i class="fa-light fa-heart"></i>
+            <div class="icons">               
+                <i class="icon fa-solid fa-cart-shopping"></i>
+                <i class="icon fa-regular fa-heart"></i>
+                <i class="icon fa-regular fa-user"></i>
             </div>
         </nav>
+        <div class="text">
+            <h1>Look Good <br> Drive Better</h1>
+        </div>
+    </div>
+    <div class="search">
+        <h1>Search part</h1>
+        <select name="select">
+            <option value="" selected disabled hidden>Brand</option>
+            <option value="car-brand">KIA</option>  
+            <option value="car-brand">HYUNDAI</option>  
+            <option value="car-brand">TOYOTA</option>  
+        </select>
+        <select name="select">
+            <option value="" selected disabled hidden>Model</option>
+            <option value="car-brand">SPORTAGE</option>  
+            <option value="car-brand">TUCSON</option>  
+            <option value="car-brand">TIGO</option>  
+        </select>
+        <select name="select">
+            <option value="" selected disabled hidden>Color</option>
+            <option value="car-brand">WHITE</option>  
+            <option value="car-brand">BLACK</option>  
+            <option value="car-brand">BLUE</option>  
+        </select>
+        <br>
         
+        <select name="select">
+            <option value="" selected disabled hidden>YEAR</option>
+            <option value="car-brand">2016</option>  
+            <option value="car-brand">2020</option>  
+            <option value="car-brand">2022</option>  
+        </select>
+        <select name="select">
+            <option value="" selected disabled hidden>Model</option>
+            <option value="car-brand">SPORTAGE</option>  
+            <option value="car-brand">TUCSON</option>  
+            <option value="car-brand">TIGO</option>  
+        </select>
+        <select name="select">
+            <option value="" selected disabled hidden>Model</option>
+            <option value="car-brand">SPORTAGE</option>  
+            <option value="car-brand">TUCSON</option>  
+            <option value="car-brand">TIGO</option>  
+        </select>
+        <select name="select">
+            <option value="" selected disabled hidden>Model</option>
+            <option value="car-brand">SPORTAGE</option>  
+            <option value="car-brand">TUCSON</option>  
+            <option value="car-brand">TIGO</option>  
+        </select>
     </div>
     
     <script src="{% static 'main.js' %}"></script>

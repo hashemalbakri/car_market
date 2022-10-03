@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+     font-family: 'OdorMeanChey';;
 }
 .mynav{
     width: 100%;
@@ -9,6 +10,7 @@
     background: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(../static/lam4.jpg);
     background-size: cover;
     background-position: center;
+    position: relative;
 }
 nav{
     color: #fff;
@@ -16,7 +18,8 @@ nav{
 }
 .brand{
     font-size: 35px;
-    margin-top: -14px;
+    margin-top: -12px;
+    margin-left: 45px;
 }
 
 .nav {
@@ -24,26 +27,47 @@ nav{
     justify-content: space-around;      
 }
 .links{
-    display: flex;    
+    display: flex;   
+    
 }
 .links li {
     margin-right: 35px;
     font-size: 20px;
 }
-.links li a {
+
+.links  li a {
     text-decoration: none;
     color: #fff;
 }
+ul {
+    list-style-type: none;
+}
 .links li a:hover ,
 .brand:hover,
-.icons:hover {
-    color: aqua;  
+.icon:hover {
+    color: aqua; 
     transition: .4s ease-in-out;
     cursor: pointer;
 }
 .icons{
-    font-size: 20px;
+    display: inline-block;
+    font-size: 20px;   
+ 
 }
+.icon {
+    margin:9px;
+}
+
+.text {
+    position: absolute;
+    top: 60%;
+    left: 10%;
+    color: #fff;
+    font-size: 28px;
+    text-transform: uppercase;
+    transition: .2s ease-in-out;
+}
+
 .toggle-button {
     position: absolute;
     top: 2.6rem;
@@ -60,6 +84,23 @@ nav{
     background-color: white;
     border-radius: 10px;
 }
+
+.search {
+    display: flex;
+    justify-content: space-around;
+    border: 1px solid rgba(0,0,0,0.4);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 @media (max-width: 850px) {
     .toggle-button {
@@ -92,13 +133,21 @@ nav{
     .links li a {
         padding: 0 1rem;
     }
-   
     .links.active {
         display: flex;
         flex-direction: column;  
         margin-top: 50px;
+        gap: 10px;
+        background-color: rgba(0, 0, 0, .2);
+        width: 850px;
     }
-    
+    .text {
+        font-size: 22px;
+        transition: .2s ease-in-out;
+        position: absolute;
+        top: 61%;
+        left: 8%;
+    }
     
     
 }
