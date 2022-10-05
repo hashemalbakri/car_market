@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-     font-family: 'OdorMeanChey';;
+    font-family: 'OdorMeanChey';;
 }
 .mynav{
     width: 100%;
@@ -24,7 +24,8 @@ nav{
 
 .nav {
     display: flex;
-    justify-content: space-around;      
+    justify-content: space-around;   
+     
 }
 .links{
     display: flex;   
@@ -86,18 +87,51 @@ ul {
 }
 
 .search {
+    border: 1px solid rgba(0,0,0,0.4);  
+    background-color: #fff;
+    width: 90%;
+    position: absolute;
+    margin-top: -100px;
+    z-index: 3;
+   left: 5%;
+    border-radius: 10px;
+}
+.search h1 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+.top-search {
+    width: 100%;
     display: flex;
     justify-content: space-around;
-    border: 1px solid rgba(0,0,0,0.4);
+    align-items: center;
+    
 }
-
-
-
-
-
-
-
-
+.bottom-search {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding-bottom: 20px;
+    margin: 0 11px !important;
+}
+.bottom-search select {
+    margin-right: 8px !important;
+}
+select {
+    width: 200px; 
+    height: 50px;
+    border-radius: 20px;
+    padding: 10px;
+}
+button {
+    display: flex !important;
+    justify-content: center;
+}
 
 
 
