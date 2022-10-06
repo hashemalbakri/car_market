@@ -20,6 +20,7 @@ def login_view(request):
     if request.method == "POST":
 
         # Attempt to sign user in
+       
         username = request.POST["username"]
         password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
@@ -44,11 +45,13 @@ def logout_view(request):
 
 def register(request):
     if request.method == "POST":
+      
+        email = request.POST['email']
         username = request.POST["username"]
-        email = request.POST["email"]
-
-        # Ensure password matches confirmation
         password = request.POST["password"]
+        
+        # Ensure password matches confirmation
+        
         confirmation = request.POST["confirmation"]
         if password != confirmation:
             return render(request, "auctions/register.html", {

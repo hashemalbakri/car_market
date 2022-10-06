@@ -38,7 +38,12 @@
             <div class="icons">               
                 <i class="icon fa-solid fa-cart-shopping"></i>
                 <i class="icon fa-regular fa-heart"></i>
+
+                {% if user.is_authenticated %} 
+                <a href="{% url 'logout' %}" style="text-decoration: none; color: white;"><i class="fa-solid fa-right-from-bracket mx-2 logout"></i></a>
+                {% else %}
                 <a href="{% url 'login' %}" style="text-decoration: none; color: white;"><i class="icon fa-regular fa-user"></i></a>
+                {% endif %}
             </div>
         </nav>
         <div class="text">

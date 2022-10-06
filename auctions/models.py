@@ -28,7 +28,7 @@ class Post(models.Model):
     brand = models.CharField(max_length=40)
     model = models.IntegerField()
     color = models.CharField(max_length=40)
-    discription = models.TextField()
+    description = models.TextField()
     categories = models.ForeignKey(Category,models.CASCADE,related_name="posts")
     price = models.FloatField()
 

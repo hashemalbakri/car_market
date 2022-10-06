@@ -45,8 +45,14 @@ ul {
 }
 .links li a:hover ,
 .brand:hover,
-.icon:hover {
+.icon:hover
+ {
     color: aqua; 
+    transition: .4s ease-in-out;
+    cursor: pointer;
+}
+.logout:hover{
+    color: red;
     transition: .4s ease-in-out;
     cursor: pointer;
 }
@@ -185,3 +191,4 @@ button {
     
     
 }
+
