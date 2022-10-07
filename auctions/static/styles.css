@@ -12,11 +12,9 @@
     background-position: center;
     position: relative;
 }
-nav{
-    color: #fff;
-    padding-top: 40px;
-}
+
 .brand{
+    color: #fff;
     font-size: 35px;
     margin-top: -12px;
     margin-left: 45px;
@@ -25,7 +23,8 @@ nav{
 .nav {
     display: flex;
     justify-content: space-around;   
-     
+    color: #fff;
+    padding-top: 40px;
 }
 .links{
     display: flex;   
@@ -57,6 +56,7 @@ ul {
     cursor: pointer;
 }
 .icons{
+    color: #fff;
     display: inline-block;
     font-size: 20px;   
  
@@ -143,8 +143,12 @@ button {
 
 
 @media (max-width: 850px) {
+    
     .toggle-button {
         display: flex;
+        position: absolute;
+        top: 33px;
+        right: 70px;
     }
    
     .links {
@@ -162,6 +166,7 @@ button {
     .brand{
         position: absolute;
         left: 38px;
+        top: 18px;
     }
     .links ul {
         width: 100%;
@@ -188,7 +193,17 @@ button {
         top: 61%;
         left: 8%;
     }
-    
-    
+   
 }
-
+.post-button{
+    margin: auto !important;
+    width:200px !important;
+    color:#fff !important;
+    background-color: #1A0B5B !important;
+}
+.post-button:hover {
+    color: #1A0B5B !important;
+    background-color: #fff !important;
+    border: 1px solid #1A0B5B;
+    box-shadow: 1px  1px 3px  #1A0B5B;
+}
