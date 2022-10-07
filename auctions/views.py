@@ -1,8 +1,9 @@
+from pyexpat import model
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from .models import CustomUser, Profile, Category, Post, Location, Favorite,Comment,PostImages
+from .models import CustomUser, Model, Profile, Category, Post, Location, Favorite,Comment,PostImages,Color
 from django.db import IntegrityError
 
 
@@ -70,3 +71,17 @@ def register(request):
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "auctions/register.html")
+
+
+def newpost(request):
+    brands = []
+    brands = Category.objects.all()
+    models = []
+    models = Model.objects.all()
+    colors = []
+    colors = Color.objects.all()
+    return render(request,"auctions/post.html",{
+        "brands":brands,
+        "models":models,
+        "colors":colors
+    })

@@ -30,7 +30,11 @@
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Shop</a></li>
                     <li><a href="#">Car Wash</a></li>
-                    <li><a href="#">New Post</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'newpost' %}">New Post</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">New Post</a></li>
+                    {% endif %}
                     <li><a href="#">Contacts</a></li>
                     
                 </ul>

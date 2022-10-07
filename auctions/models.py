@@ -22,12 +22,24 @@ class Category(models.Model):
     def __str__(self) -> str:
         return f"{self.id} {self.name}"
 
+class Model(models.Model):
+    year = models.IntegerField()
+
+    def __str__(self) -> str:
+        return f"{self.year}"  
+
+class Color(models.Model):
+    color = models.CharField(max_length=40)
+
+    def __str__(self) -> str:
+        return f"{self.color}"     
+
 class Post(models.Model):
     user = models.ForeignKey(CustomUser,models.CASCADE,related_name="posts")
     name = models.CharField(max_length=40)
     brand = models.CharField(max_length=40)
-    model = models.IntegerField()
-    color = models.CharField(max_length=40)
+    model = models.ForeignKey(Model,models.CASCADE,related_name="posts")
+    color = models.ForeignKey(Color,models.CASCADE,related_name="posts")
     description = models.TextField()
     categories = models.ForeignKey(Category,models.CASCADE,related_name="posts")
     price = models.FloatField()
