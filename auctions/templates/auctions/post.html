@@ -15,9 +15,9 @@
 <script src="https://kit.fontawesome.com/4d0169ec99.js" crossorigin="anonymous"></script>
 </head>
 <body>
-        <nav style="background-color:#1A0B5B ; height: 80px;" class="nav"> 
+        <nav style="background-color:#1A0B5B ; height: 80px; padding: 0;" class="d-flex align-items-center justify-content-around"> 
             <div>
-                <h1 class="brand">Tukma</h1>
+                <h1 class="brand" style="padding-top: 15px;">Tukma</h1>
                 <a href="#" class="toggle-button">
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -25,8 +25,13 @@
                 </a>
             </div>
             <div>
+<<<<<<< HEAD
                 <ul class="links">
                     <li><a href="{% url 'index' %}">Home</a></li>
+=======
+                <ul class="links" style="padding-top: 15px;">
+                    <li><a href="#">Home</a></li>
+>>>>>>> a81dffb004a96bf4fa8b637684a562db5ed2796f
                     <li><a href="#">Shop</a></li>
                     <li><a href="#">Car Wash</a></li>
                     {% if user.is_authenticated %}
@@ -52,19 +57,28 @@
 
     <!-- Credit card form -->
 <section>
-    <div >
+    <div>
       <div class="col-md-12 mb-4">
         <div class="card mb-4">
-          <div class="card-header py-3">
-            <h5 class="mb-0">Car details</h5>
+          <div class="card-header py-3 d-flex justify-content-center">
+            <h4 class="mb-0" style="text-transform: uppercase;"><b>New Post</b></h4>
           </div>
           <div class="card-body">
+<<<<<<< HEAD
             <form action="{% url 'save' %}" method="POST">
                 {% csrf_token %}
               <!-- 2 column grid layout with text inputs for the first and last names -->
               <div class="form-outline mb-4">
                 <label class="form-check-label" for="sec1">Brand</label>
               <select name="brand" id="sec1" class="form-select" aria-label="Default select example">
+=======
+            <form action="{% url 'newpost' %}" method="post">
+                {% csrf_token %}
+              <!-- 2 column grid layout with text inputs for the first and last names -->
+              <div class="form-outline mb-4 col-12">
+                <label class="form-check-label" for="sec1"><b>Brand</b></label>
+              <select id="sec1" class="form-select" aria-label="Default select example">
+>>>>>>> a81dffb004a96bf4fa8b637684a562db5ed2796f
                 <option selected>Model</option>
                 {% for brand in brands %}
                 <option value="{{brand.name}}">{{brand.name}}</option>
@@ -73,6 +87,7 @@
               </div>
 
               <div class="form-outline mb-4">
+<<<<<<< HEAD
                 <label class="form-label" for="form6Example3">Car name</label>
                 <input name="carName" type="text" id="form6Example3" class="form-control" />
               </div>
@@ -80,6 +95,15 @@
               <div class="form-outline mb-4">
                 <label class="form-check-label" for="sec1">Model</label>
               <select name="model" id="sec1" class="form-select" aria-label="Default select example">
+=======
+                <label class="form-label" for="form6Example3"><b>Car name</b></label>
+                <input type="text" id="form6Example3" class="form-control" />
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-check-label" for="sec1"><b>Model</b></label>
+              <select id="sec1" class="form-select" aria-label="Default select example">
+>>>>>>> a81dffb004a96bf4fa8b637684a562db5ed2796f
                 <option selected>Model</option>
                 {% for model in models %}
                 <option value="{{model.year}}">{{model.year}}</option>
@@ -88,8 +112,13 @@
               </div>
 
             <div class="form-outline mb-4">
+<<<<<<< HEAD
                 <label class="form-check-label" for="sec2">Color</label>
                 <select name="color" id="sec2" class="form-select" aria-label="Default select example">
+=======
+                <label class="form-check-label" for="sec2"><b>Color</b></label>
+                <select id="sec2" class="form-select" aria-label="Default select example">
+>>>>>>> a81dffb004a96bf4fa8b637684a562db5ed2796f
                   <option selected>Color</option>
                   {% for color in colors %}
                   <option value="{{color.color}}">{{color.color}}</option>
@@ -98,12 +127,18 @@
             </div>
 
             <div class="mb-3">
+<<<<<<< HEAD
                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>
                 <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+=======
+                <label for="exampleFormControlTextarea1" class="form-label"><b>Description</b></label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+>>>>>>> a81dffb004a96bf4fa8b637684a562db5ed2796f
               </div>
   
 
-              <label class="form-check-label" for="sec3">Price</label>
+              <label class="form-check-label " for="sec3"><b>Price</b></label>
+
               <div id="sec3" class="input-group mb-3">
                 <span class="input-group-text">$</span>
                 <input name="price" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
@@ -111,84 +146,18 @@
               </div>
 
               <div class="mb-3">
+<<<<<<< HEAD
                 <label for="formFileMultiple" class="form-label">Images</label>
                 <input name="image" class="form-control" type="file" id="formFileMultiple" multiple>
+=======
+                <label for="formFileMultiple" class="form-label"><b>Images</b></label>
+                <input class="form-control" type="file" id="formFileMultiple" multiple>
+>>>>>>> a81dffb004a96bf4fa8b637684a562db5ed2796f
               </div>
 
-              <!-- <hr class="my-4" />
   
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="checkoutForm1" />
-                <label class="form-check-label" for="checkoutForm1">
-                  Shipping address is the same as my billing address
-                </label>
-              </div>
-  
-              <div class="form-check mb-4">
-                <input class="form-check-input" type="checkbox" value="" id="checkoutForm2" checked />
-                <label class="form-check-label" for="checkoutForm2">
-                  Save this information for next time
-                </label>
-              </div>
-  
-              <hr class="my-4" />
-  
-              <h5 class="mb-4">Payment</h5>
-  
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="checkoutForm3"
-                  checked />
-                <label class="form-check-label" for="checkoutForm3">
-                  Credit card
-                </label>
-              </div>
-  
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="checkoutForm4" />
-                <label class="form-check-label" for="checkoutForm4">
-                  Debit card
-                </label>
-              </div>
-  
-              <div class="form-check mb-4">
-                <input class="form-check-input" type="radio" name="flexRadioDefault" id="checkoutForm5" />
-                <label class="form-check-label" for="checkoutForm5">
-                  Paypal
-                </label>
-              </div>
-  
-              <div class="row mb-4">
-                <div class="col">
-                  <div class="form-outline">
-                    <input type="text" id="formNameOnCard" class="form-control" />
-                    <label class="form-label" for="formNameOnCard">Name on card</label>
-                  </div>
-                </div>
-                <div class="col">
-                  <div class="form-outline">
-                    <input type="text" id="formCardNumber" class="form-control" />
-                    <label class="form-label" for="formCardNumber">Credit card number</label>
-                  </div>
-                </div>
-              </div>
-  
-              <div class="row mb-4">
-                <div class="col-3">
-                  <div class="form-outline">
-                    <input type="text" id="formExpiration" class="form-control" />
-                    <label class="form-label" for="formExpiration">Expiration</label>
-                  </div>
-                </div>
-                <div class="col-3">
-                  <div class="form-outline">
-                    <input type="text" id="formCVV" class="form-control" />
-                    <label class="form-label" for="formCVV">CVV</label>
-                  </div>
-                </div>
-              </div> -->
-  
-              <button class="btn btn-primary btn-lg btn-block" type="submit">
-                Preview Car
+              <button class="btn post-button btn-lg btn-block" type="submit">
+                Post
               </button>
             </form>
           </div>
@@ -201,6 +170,6 @@
   <!-- Credit card form -->
 
 
-
+ <script src="main2.js"></script>
 </body>
 </html>
