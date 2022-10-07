@@ -26,7 +26,7 @@
             </div>
             <div>
                 <ul class="links">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="{% url 'index' %}">Home</a></li>
                     <li><a href="#">Shop</a></li>
                     <li><a href="#">Car Wash</a></li>
                     {% if user.is_authenticated %}
@@ -59,12 +59,12 @@
             <h5 class="mb-0">Car details</h5>
           </div>
           <div class="card-body">
-            <form action="{% url 'newpost' %}">
+            <form action="{% url 'save' %}" method="POST">
                 {% csrf_token %}
               <!-- 2 column grid layout with text inputs for the first and last names -->
               <div class="form-outline mb-4">
                 <label class="form-check-label" for="sec1">Brand</label>
-              <select id="sec1" class="form-select" aria-label="Default select example">
+              <select name="brand" id="sec1" class="form-select" aria-label="Default select example">
                 <option selected>Model</option>
                 {% for brand in brands %}
                 <option value="{{brand.name}}">{{brand.name}}</option>
@@ -74,12 +74,12 @@
 
               <div class="form-outline mb-4">
                 <label class="form-label" for="form6Example3">Car name</label>
-                <input type="text" id="form6Example3" class="form-control" />
+                <input name="carName" type="text" id="form6Example3" class="form-control" />
               </div>
 
               <div class="form-outline mb-4">
                 <label class="form-check-label" for="sec1">Model</label>
-              <select id="sec1" class="form-select" aria-label="Default select example">
+              <select name="model" id="sec1" class="form-select" aria-label="Default select example">
                 <option selected>Model</option>
                 {% for model in models %}
                 <option value="{{model.year}}">{{model.year}}</option>
@@ -89,7 +89,7 @@
 
             <div class="form-outline mb-4">
                 <label class="form-check-label" for="sec2">Color</label>
-                <select id="sec2" class="form-select" aria-label="Default select example">
+                <select name="color" id="sec2" class="form-select" aria-label="Default select example">
                   <option selected>Color</option>
                   {% for color in colors %}
                   <option value="{{color.color}}">{{color.color}}</option>
@@ -99,20 +99,20 @@
 
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
               </div>
   
 
               <label class="form-check-label" for="sec3">Price</label>
               <div id="sec3" class="input-group mb-3">
                 <span class="input-group-text">$</span>
-                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                <input name="price" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
                 <span class="input-group-text">.00</span>
               </div>
 
               <div class="mb-3">
                 <label for="formFileMultiple" class="form-label">Images</label>
-                <input class="form-control" type="file" id="formFileMultiple" multiple>
+                <input name="image" class="form-control" type="file" id="formFileMultiple" multiple>
               </div>
 
               <!-- <hr class="my-4" />

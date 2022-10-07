@@ -5,6 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from .models import CustomUser, Model, Profile, Category, Post, Location, Favorite,Comment,PostImages,Color
 from django.db import IntegrityError
+import datetime
 
 
 # Create your views here.
@@ -84,4 +85,31 @@ def newpost(request):
         "brands":brands,
         "models":models,
         "colors":colors
+    })
+
+def save(request):
+    if request == "POST":
+        brand = request.POST["brand"]
+        carName = request.POST["carName"]
+        model = request.POST["model"]
+        color = request.POST["color"]
+        description = request.POST["description"]
+        price = request.POST["price"]
+        image = request.POST["image"]
+        user = request.user
+        time = datetime.datetime.now()
+
+        content = Post.objects.create(user=user,categories=brand,name=carName,color=color,description=description,price=price,model=model,image=image,time_create=time)
+        content.save()
+        item_id = content.pk
+        return display(request,item_id)
+
+def display(request,item_id):
+    item = None
+    user = None
+    user = CustomUser.objects.filter(username = request.user)
+    item = Post.objects.get(id = item_id)
+    return render(request,"auctions/display.html",{
+        "item":item,
+        "user":user
     })
