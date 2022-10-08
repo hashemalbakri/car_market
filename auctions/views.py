@@ -126,3 +126,4 @@ def display(request,item_id):
         "item":item,
         "user":user
     })
+
