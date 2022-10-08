@@ -88,18 +88,31 @@ def newpost(request):
     })
 
 def save(request):
-    if request == "POST":
+    if request.method == "POST":
         brand = request.POST["brand"]
         carName = request.POST["carName"]
-        model = request.POST["model"]
+        year = request.POST['model']
+        model = Model.objects.get(year=year)
         color = request.POST["color"]
+        colors = Color.objects.get(color=color)
         description = request.POST["description"]
         price = request.POST["price"]
-        image = request.POST["image"]
+        image1 = request.POST["image"]
+        images = PostImages.objects.get(image=image1)
         user = request.user
         time = datetime.datetime.now()
 
-        content = Post.objects.create(user=user,categories=brand,name=carName,color=color,description=description,price=price,model=model,image=image,time_create=time)
+        content = Post(
+            brand = brand,
+            name = carName,
+            model = model,
+            color = colors,
+            description = description,
+            price = price,
+            image = images,
+            time_create = time,
+            user = user
+        )
         content.save()
         item_id = content.pk
         return display(request,item_id)

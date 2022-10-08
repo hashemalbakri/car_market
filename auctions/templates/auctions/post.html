@@ -25,13 +25,8 @@
                 </a>
             </div>
             <div>
-<<<<<<< HEAD
                 <ul class="links">
                     <li><a href="{% url 'index' %}">Home</a></li>
-=======
-                <ul class="links" style="padding-top: 15px;">
-                    <li><a href="#">Home</a></li>
->>>>>>> a81dffb004a96bf4fa8b637684a562db5ed2796f
                     <li><a href="#">Shop</a></li>
                     <li><a href="#">Car Wash</a></li>
                     {% if user.is_authenticated %}
@@ -64,21 +59,12 @@
             <h4 class="mb-0" style="text-transform: uppercase;"><b>New Post</b></h4>
           </div>
           <div class="card-body">
-<<<<<<< HEAD
             <form action="{% url 'save' %}" method="POST">
                 {% csrf_token %}
               <!-- 2 column grid layout with text inputs for the first and last names -->
               <div class="form-outline mb-4">
                 <label class="form-check-label" for="sec1">Brand</label>
               <select name="brand" id="sec1" class="form-select" aria-label="Default select example">
-=======
-            <form action="{% url 'newpost' %}" method="post">
-                {% csrf_token %}
-              <!-- 2 column grid layout with text inputs for the first and last names -->
-              <div class="form-outline mb-4 col-12">
-                <label class="form-check-label" for="sec1"><b>Brand</b></label>
-              <select id="sec1" class="form-select" aria-label="Default select example">
->>>>>>> a81dffb004a96bf4fa8b637684a562db5ed2796f
                 <option selected>Model</option>
                 {% for brand in brands %}
                 <option value="{{brand.name}}">{{brand.name}}</option>
@@ -87,7 +73,6 @@
               </div>
 
               <div class="form-outline mb-4">
-<<<<<<< HEAD
                 <label class="form-label" for="form6Example3">Car name</label>
                 <input name="carName" type="text" id="form6Example3" class="form-control" />
               </div>
@@ -95,15 +80,6 @@
               <div class="form-outline mb-4">
                 <label class="form-check-label" for="sec1">Model</label>
               <select name="model" id="sec1" class="form-select" aria-label="Default select example">
-=======
-                <label class="form-label" for="form6Example3"><b>Car name</b></label>
-                <input type="text" id="form6Example3" class="form-control" />
-              </div>
-
-              <div class="form-outline mb-4">
-                <label class="form-check-label" for="sec1"><b>Model</b></label>
-              <select id="sec1" class="form-select" aria-label="Default select example">
->>>>>>> a81dffb004a96bf4fa8b637684a562db5ed2796f
                 <option selected>Model</option>
                 {% for model in models %}
                 <option value="{{model.year}}">{{model.year}}</option>
@@ -112,13 +88,8 @@
               </div>
 
             <div class="form-outline mb-4">
-<<<<<<< HEAD
                 <label class="form-check-label" for="sec2">Color</label>
                 <select name="color" id="sec2" class="form-select" aria-label="Default select example">
-=======
-                <label class="form-check-label" for="sec2"><b>Color</b></label>
-                <select id="sec2" class="form-select" aria-label="Default select example">
->>>>>>> a81dffb004a96bf4fa8b637684a562db5ed2796f
                   <option selected>Color</option>
                   {% for color in colors %}
                   <option value="{{color.color}}">{{color.color}}</option>
@@ -127,13 +98,8 @@
             </div>
 
             <div class="mb-3">
-<<<<<<< HEAD
                 <label for="exampleFormControlTextarea1" class="form-label">Description</label>
                 <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-=======
-                <label for="exampleFormControlTextarea1" class="form-label"><b>Description</b></label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
->>>>>>> a81dffb004a96bf4fa8b637684a562db5ed2796f
               </div>
   
 
@@ -146,13 +112,8 @@
               </div>
 
               <div class="mb-3">
-<<<<<<< HEAD
                 <label for="formFileMultiple" class="form-label">Images</label>
                 <input name="image" class="form-control" type="file" id="formFileMultiple" multiple>
-=======
-                <label for="formFileMultiple" class="form-label"><b>Images</b></label>
-                <input class="form-control" type="file" id="formFileMultiple" multiple>
->>>>>>> a81dffb004a96bf4fa8b637684a562db5ed2796f
               </div>
 
   
