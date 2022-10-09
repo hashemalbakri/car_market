@@ -46,7 +46,7 @@ class Post(models.Model):
     model = models.ForeignKey(Model,models.CASCADE,related_name="posts")
     color = models.ForeignKey(Color,models.CASCADE,related_name="posts")
     description = models.TextField()
-    categories = models.ForeignKey(Category,models.CASCADE,related_name="posts")
+    categories = models.ForeignKey(Category,models.CASCADE,related_name="posts",null=True)
     image = models.ForeignKey(PostImages,models.CASCADE,related_name="posts",null=True)
     price = models.FloatField()
     time_create = models.DateTimeField(null=True)

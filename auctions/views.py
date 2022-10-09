@@ -98,10 +98,14 @@ def save(request):
         description = request.POST["description"]
         price = request.POST["price"]
         image1 = request.POST["image"]
-        images = PostImages.objects.get(image=image1)
         user = request.user
         time = datetime.datetime.now()
 
+        content = PostImages(
+            image = image1,
+        )
+        content.save()
+        
         content = Post(
             brand = brand,
             name = carName,
@@ -109,7 +113,7 @@ def save(request):
             color = colors,
             description = description,
             price = price,
-            image = images,
+            image = PostImages.objects.filter(image=image1).first(),
             time_create = time,
             user = user
         )
