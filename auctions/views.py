@@ -97,7 +97,7 @@ def save(request):
         colors = Color.objects.get(color=color)
         description = request.POST["description"]
         price = request.POST["price"]
-        image1 = request.POST["image"]
+        image1 = request.FILES["image"]
         user = request.user
         time = datetime.datetime.now()
 
@@ -113,7 +113,7 @@ def save(request):
             color = colors,
             description = description,
             price = price,
-            image = PostImages.objects.filter(image=image1).first(),
+            image = content,
             time_create = time,
             user = user
         )
@@ -125,7 +125,7 @@ def display(request,item_id):
     item = None
     user = None
     user = CustomUser.objects.filter(username = request.user)
-    item = Post.objects.get(id = item_id)
+    item = Post.objects.get(id = item_id) 
     return render(request,"auctions/display.html",{
         "item":item,
         "user":user

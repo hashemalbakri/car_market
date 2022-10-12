@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +14,7 @@
     <p>{{item.brand}}</p>
     <p>{{item.color}}</p>
     <p>{{item.description}}</p>
-    <img src="{{ item.image }}" alt="">
+    <img src="{{ item.image.url }}" alt="image">
 
 </body>
 </html>

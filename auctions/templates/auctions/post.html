@@ -59,7 +59,7 @@
             <h4 class="mb-0" style="text-transform: uppercase;"><b>New Post</b></h4>
           </div>
           <div class="card-body">
-            <form action="{% url 'save' %}" method="POST">
+            <form action="{% url 'save' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
               <!-- 2 column grid layout with text inputs for the first and last names -->
               <div class="form-outline mb-4">
