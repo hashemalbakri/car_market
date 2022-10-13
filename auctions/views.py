@@ -142,11 +142,19 @@ def display(request,item_id):
 
 def favorite(request):
     user = request.user
-    post = []
-    post = Favorite.objects.filter(user=user)
+    posts = []
+    posts = Favorite.objects.filter(user=user)
+    item = []
+    for x in posts:
+        items = x.item
+        item.append(items)
+
     return render(request,"auctions/favorite.html",{
-    "post":post
+    "posts":posts,
+    "items":item
     })
+
+
 
 def favcreate(request,item_id):
     user = request.user
