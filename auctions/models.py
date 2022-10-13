@@ -1,4 +1,5 @@
 
+from tkinter import CASCADE
 from django.db import models
 
 from django.contrib.auth.models import AbstractUser
@@ -50,6 +51,7 @@ class Post(models.Model):
     image = models.ForeignKey(PostImages,models.CASCADE,related_name="posts",null=True)
     price = models.FloatField()
     time_create = models.DateTimeField(null=True)
+    watchList = models.ManyToManyField(CustomUser,blank=True,null=True,related_name="Watch")
 
     def __str__(self) -> str:
         return f"{self.id} {self.name}"
@@ -63,12 +65,7 @@ class Location(models.Model):
     def __str__(self) -> str:
         return f"{self.id} {self.name}"
 
-class Favorite(models.Model):
-    user = models.ForeignKey(CustomUser,models.CASCADE,related_name="favs")
-    post = models.ForeignKey(Post,models.CASCADE,related_name="favs")
 
-    def __str__(self) -> str:
-        return f"{self.id} {self.post}"
 
 class Comment(models.Model):
     user = models.ForeignKey(CustomUser,models.CASCADE,related_name="comments")

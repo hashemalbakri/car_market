@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from .models import CustomUser, Model, Profile, Category, Post, Location, Favorite,Comment,PostImages,Color
+from .models import CustomUser, Model, Profile, Category, Post, Location,Comment,PostImages,Color
 from django.db import IntegrityError
 import datetime
 
@@ -11,7 +11,14 @@ import datetime
 # Create your views here.
 
 def index(request):
-    return render(request,"auctions/index.html")
+    x = []
+    x = Post.objects.all()
+    items = []
+    for item in reversed(x):
+        items.append(item)
+    return render(request, "auctions/index.html",{
+        "items":items
+    })
 
 
 
@@ -81,7 +88,9 @@ def newpost(request):
     models = Model.objects.all()
     colors = []
     colors = Color.objects.all()
+    
     return render(request,"auctions/post.html",{
+        
         "brands":brands,
         "models":models,
         "colors":colors
@@ -126,8 +135,29 @@ def display(request,item_id):
     user = None
     user = CustomUser.objects.filter(username = request.user)
     item = Post.objects.get(id = item_id) 
+    owner = request.user
+    listingInWatch = owner in item.watchList.all()
     return render(request,"auctions/display.html",{
         "item":item,
-        "user":user
+        "user":user,
+        "listingInWatch":listingInWatch,
     })
 
+def watchList(request):
+    fav = request.user.Watch.all()
+    return render(request,'auctions/watchList.html',{
+        'data': fav,
+    })
+
+
+def remove(request, id):
+    data = Post.objects.get(pk=id)
+    owner = request.user
+    data.watchList.remove(owner)
+    return HttpResponseRedirect(reverse("display", args=(id, )))
+
+def add(request, id):
+    data = Post.objects.get(pk=id)
+    owner = request.user
+    data.watchList.add(owner)
+    return HttpResponseRedirect(reverse("display", args=(id, )))
