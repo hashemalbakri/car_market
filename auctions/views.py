@@ -11,7 +11,14 @@ import datetime
 # Create your views here.
 
 def index(request):
-    return render(request,"auctions/index.html")
+    x = []
+    x = Post.objects.all()
+    items = []
+    for item in reversed(x):
+        items.append(item)
+    return render(request, "auctions/index.html",{
+        "items":items
+    })
 
 
 
