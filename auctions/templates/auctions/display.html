@@ -20,7 +20,10 @@
 
     <nav style="background-color:#1A0B5B ; height: 80px; padding: 0;" class="d-flex align-items-center justify-content-around"> 
         <div>
+            <a href="{% url 'index' %}" style="text-decoration: none; color: white;">
             <h1 class="brand" style="padding-top: 15px;">Tukma</h1>
+        </a>
+            
             <a href="#" class="toggle-button">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -28,7 +31,7 @@
             </a>
         </div>
         <div>
-            <ul class="links">
+            <ul class="links" style="padding-top: 15px;">
                 <li><a href="{% url 'index' %}">Home</a></li>
                 <li><a href="#">Shop</a></li>
                 <li><a href="#">Car Wash</a></li>
@@ -43,7 +46,7 @@
         </div>
         <div class="icons">               
             <i class="icon fa-solid fa-cart-shopping"></i>
-            <a style="text-decoration:none ; color:white" href="{% url 'favorite' %}"><i class="icon fa-regular fa-heart"></i></a>
+            <i class="icon fa-regular fa-heart"></i>
 
             {% if user.is_authenticated %} 
             <a href="{% url 'logout' %}" style="text-decoration: none; color: white;"><i class="fa-solid fa-right-from-bracket mx-2 logout"></i></a>
@@ -54,6 +57,7 @@
     </nav>
 
 
+    
     <div class="container">
 		<div class="card">
 			<div class="container-fliud">
@@ -78,40 +82,23 @@
 					</div>
 					<div class="details col-md-6">
 						<h3 class="product-title">{{ item.name }}</h3>
-						<div class="rating">
-							<div class="stars">
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star checked"></span>
-								<span class="fa fa-star"></span>
-								<span class="fa fa-star"></span>
-							</div>
-							<span class="review-no">41 reviews</span>
-						</div>
+						
 						<p class="product-description">{{ item.description }}</p>
 						<h4 class="price">current price: <span>{{ item.price }} $</span></h4>
-                        <h4 class="price">Owner: <span>{{ item.user }} $</span></h4>
-                        <h4 class="price">Brand: <span>{{ item.brand }} $</span></h4>
+                        <h4 class="price">Owner: <span>{{ item.user }} </span></h4>
+                        <h4 class="price">Brand: <span>{{ item.brand }} </span></h4>
 						<!-- <p class="vote"><strong>Owner:  </strong><strong>{{ item.user }}</strong></p>
 						<h5 class="sizes">Brand:
 							<span class="size" data-toggle="tooltip" title="small">{{ item.brand }}</span>
 						</h5> -->
 						<h5 class="colors">Colors:
 						
-							<span class="color {{ item.color }}">{{ item.color }}</span>
+							{{item.color}}
 							<!-- <span class="color blue"></span> -->
 						</h5>
 						<div class="action">
 							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
-                            <!-- {% if favPost %}
-                            <form action="{% url 'favremove' item.id %}">
-                                <button class="like btn btn-default" type="submit"><span class="fa fa-heart"></span></button> -->
-                            <!-- </form> -->
-                            <!-- {% else %} -->
-                            <form action="{% url 'favcreate' item.id %}">
-                                <button class="like btn btn-default" type="submit"><i class="icon fa-regular fa-heart"></button>
-                            </form>
-							<!-- {% endif %} -->
+							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
 						</div>
 					</div>
 				</div>

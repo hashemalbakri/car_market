@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from .models import CustomUser, Model, Profile, Category, Post, Location, Favorite,Comment,PostImages,Color
+from .models import CustomUser, Model, Profile, Category, Post, Location,Comment,PostImages,Color
 from django.db import IntegrityError
 import datetime
 
@@ -88,7 +88,9 @@ def newpost(request):
     models = Model.objects.all()
     colors = []
     colors = Color.objects.all()
+    
     return render(request,"auctions/post.html",{
+        
         "brands":brands,
         "models":models,
         "colors":colors
@@ -132,42 +134,30 @@ def display(request,item_id):
     item = None
     user = None
     user = CustomUser.objects.filter(username = request.user)
-    item = Post.objects.get(id = item_id)
-    # favPost = Favorite.objects.filter(post = item , user = user)
+    item = Post.objects.get(id = item_id) 
+    owner = request.user
+    listingInWatch = owner in item.watchList.all()
     return render(request,"auctions/display.html",{
         "item":item,
         "user":user,
-        # "favPost":favPost
+        "listingInWatch":listingInWatch,
     })
 
-def favorite(request):
-    user = request.user
-    posts = []
-    posts = Favorite.objects.filter(user=user)
-    item = []
-    for x in posts:
-        items = x.item
-        item.append(items)
-
-    return render(request,"auctions/favorite.html",{
-    "posts":posts,
-    "items":item
+def watchList(request):
+    fav = request.user.Watch.all()
+    return render(request,'auctions/watchList.html',{
+        'data': fav,
     })
 
 
+def remove(request, id):
+    data = Post.objects.get(pk=id)
+    owner = request.user
+    data.watchList.remove(owner)
+    return HttpResponseRedirect(reverse("display", args=(id, )))
 
-def favcreate(request,item_id):
-    user = request.user
-    post = Post.objects.get(id = item_id)
-    favPost = Favorite.objects.create(
-        user = user,
-        post = post
-    )
-    return display(request,item_id)
-
-def favremove(request,item_id):
-    user = request.user
-    post = Post.objects.get(id = item_id)
-    favPost = Favorite.objects.get(user = user , post = post)
-    favPost.delete()
-    return display(request,item_id)
+def add(request, id):
+    data = Post.objects.get(pk=id)
+    owner = request.user
+    data.watchList.add(owner)
+    return HttpResponseRedirect(reverse("display", args=(id, )))
