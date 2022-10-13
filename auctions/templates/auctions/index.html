@@ -41,7 +41,7 @@
             </div>
             <div class="icons">               
                 <i class="icon fa-solid fa-cart-shopping"></i>
-                <i class="icon fa-regular fa-heart"></i>
+                <a style="text-decoration:none ; color:white" href="{% url 'favorite' %}"><i class="icon fa-regular fa-heart"></i></a>
 
                 {% if user.is_authenticated %} 
                 <a href="{% url 'logout' %}" style="text-decoration: none; color: white;"><i class="fa-solid fa-right-from-bracket mx-2 logout"></i></a>
@@ -114,8 +114,9 @@
 
 <div class="container mt-5 mb-5">
     <div class="row g-1">
+        {% for item in items %}
         <div class="col-md-4">
-            {% for item in items %}
+            
             <a href="{% url 'display' item.id %}">
             <div class="p-card car-card">
                 <div class="p-carousel">
@@ -147,9 +148,9 @@
                 </div>
             </div>
         </a>
-        {% endfor %}
+        
         </div>
-
+        {% endfor %}
     </div>
 </div>
 

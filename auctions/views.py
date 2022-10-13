@@ -132,9 +132,34 @@ def display(request,item_id):
     item = None
     user = None
     user = CustomUser.objects.filter(username = request.user)
-    item = Post.objects.get(id = item_id) 
+    item = Post.objects.get(id = item_id)
+    # favPost = Favorite.objects.filter(post = item , user = user)
     return render(request,"auctions/display.html",{
         "item":item,
-        "user":user
+        "user":user,
+        # "favPost":favPost
     })
 
+def favorite(request):
+    user = request.user
+    post = []
+    post = Favorite.objects.filter(user=user)
+    return render(request,"auctions/favorite.html",{
+    "post":post
+    })
+
+def favcreate(request,item_id):
+    user = request.user
+    post = Post.objects.get(id = item_id)
+    favPost = Favorite.objects.create(
+        user = user,
+        post = post
+    )
+    return display(request,item_id)
+
+def favremove(request,item_id):
+    user = request.user
+    post = Post.objects.get(id = item_id)
+    favPost = Favorite.objects.get(user = user , post = post)
+    favPost.delete()
+    return display(request,item_id)

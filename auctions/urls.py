@@ -9,5 +9,7 @@ urlpatterns = [
    path("register", views.register, name="register"),
    path("newpost",views.newpost,name="newpost"),
    path("save",views.save,name="save"),
-   path('display/<int:item_id>', views.display,name='display')
+   path('display/<int:item_id>', views.display,name='display'),
+   path('favorite',views.favorite,name="favorite"),
+   path('favcreate/<int:item_id>',views.favcreate,name="favcreate")
 ]
