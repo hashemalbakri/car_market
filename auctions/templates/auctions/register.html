@@ -1,82 +1,77 @@
+{% extends "auctions/layout.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block title %}Register{% endblock %}
+
+{% block head %}
     <link rel="stylesheet" href="{% static 'login.css' %}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <title>Document</title>
-</head>
+{% endblock %}
 
-<body>
-    <section class="h-100 gradient-form" style="background-color: #eee;">
-        <div class="container py-5 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-xl-10">
-                    <div class="card rounded-3 text-black">
-                        <div class="row g-0">
-                            <div class="col-lg-6">
-                                <div class="card-body p-md-5 mx-md-4">
+{% block body %}
+<section class="h-100 gradient-form" style="background-color: #eee;">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-10">
+                <div class="card rounded-3 text-black">
+                    <div class="row g-0">
+                        <div class="col-lg-6">
+                            <div class="card-body p-md-5 mx-md-4">
 
-                                    <div class="text-center">
-                                       <h1 class="mb-5">Tukma</h1>
-                                        
+                                <div class="text-center">
+                                   <h1 class="mb-5">Tukma</h1>
+                                    
+                                </div>
+
+                                <form action="{% url 'register' %}"  method="post">
+                                    {% csrf_token %}
+                                    <p style="color: black; font-size:large"><b> Sign Up Now </b></p>
+                                    {% if message %}
+                                        <div style="color: red;" class="my-3">{{ message }}</div>
+                                    {% endif %}
+                                   
+
+
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form2Example11" >Username</label>
+                                        <input autofocus class="form-control" type="text" name="username" placeholder="Username">
+
+                                        <label for="form2wxample11" class="form-label">Email Address</label>
+                                        <input class="form-control" type="email" name="email" placeholder="Email Address">
+
+                                        <label class="form-label " for="form2Example22" name="password">Password</label>
+                                        <input type="password" id="form2Example22" class="form-control" name="password"/>
+
+                                        <label class="form-label " for="form2Example22">Confirm Password</label>
+                                        <input type="password" id="form2Example22" class="form-control" name="confirmation"/>
+
+                                    
+
                                     </div>
 
-                                    <form action="{% url 'register' %}"  method="post">
-                                        {% csrf_token %}
-                                        <p style="color: black; font-size:large"><b> Sign Up Now </b></p>
-                                        {% if message %}
-                                            <div style="color: red;" class="my-3">{{ message }}</div>
-                                        {% endif %}
-                                       
-
-
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="form2Example11" >Username</label>
-                                            <input autofocus class="form-control" type="text" name="username" placeholder="Username">
-
-                                            <label for="form2wxample11" class="form-label">Email Address</label>
-                                            <input class="form-control" type="email" name="email" placeholder="Email Address">
-
-                                            <label class="form-label " for="form2Example22" name="password">Password</label>
-                                            <input type="password" id="form2Example22" class="form-control" name="password"/>
-
-                                            <label class="form-label " for="form2Example22">Confirm Password</label>
-                                            <input type="password" id="form2Example22" class="form-control" name="confirmation"/>
-
+                                    <div class="text-center pt-1 mb-5 pb-1">
+                                        <input style="width: 200px; color: #fff; font-weight: 500;" class="btn  btn-block fa-lg gradient-custom-2 mb-4" type="submit" value="Sign up"><br>
+                                        <a class="text-muted" href="#!">Forgot password?</a>
                                         
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-center pb-4">
+                                        <p class="mb-0 me-2">Already have an account?</p>
+                                        <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-danger" style="width: 100px;">Login</button></a>
+                                      </div>
 
-                                        </div>
-
-                                        <div class="text-center pt-1 mb-5 pb-1">
-                                            <input style="width: 200px; color: #fff; font-weight: 500;" class="btn  btn-block fa-lg gradient-custom-2 mb-4" type="submit" value="Sign up"><br>
-                                            <a class="text-muted" href="#!">Forgot password?</a>
-                                            
-                                        </div>
-                                        <div class="d-flex align-items-center justify-content-center pb-4">
-                                            <p class="mb-0 me-2">Already have an account?</p>
-                                            <a href="{% url 'login' %}"><button type="button" class="btn btn-outline-danger" style="width: 100px;">Login</button></a>
-                                          </div>
-
-                                    </form>
-
-                                </div>
-                            </div>
-                            <div style="background-image:url(static/login.jpg) ;background-position: center;background-size:cover;background-repeat: no-repeat;"
-                                class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                                </form>
 
                             </div>
+                        </div>
+                        <div style="background-image:url(static/login.jpg) ;background-position: center;background-size:cover;background-repeat: no-repeat;"
+                            class="col-lg-6 d-flex align-items-center gradient-custom-2">
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-</body>
-
-</html>
+    </div>
+</section>
+{% endblock %}

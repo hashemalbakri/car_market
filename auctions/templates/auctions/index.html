@@ -29,7 +29,7 @@
                 <ul class="links">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Shop</a></li>
-                    <li><a href="#">Car Wash</a></li>
+                    <li><a href="{% url 'carwash' %}">Car Wash</a></li>
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'newpost' %}">New Post</a></li>
                     {% else %}
@@ -40,7 +40,6 @@
                 </ul>
             </div>
             <div class="icons">               
-                <i class="icon fa-solid fa-cart-shopping"></i>
                 <a href="{% url 'watchList' %}" style="text-decoration: none; color: white;">
                 <i class="icon fa-regular fa-heart"></i>
                  </a>
@@ -146,7 +145,7 @@
                         <div class="d-flex flex-column align-items-center">
                             <h6 class="mb-0">Model</h6><span>{{ item.model }}</span></div>
                     </div>
-                    <div class="buy mt-3"><button class="btn btn-outline-dark btn-block" type="button" style="width:100%;">Buy Now</button></div>
+                    <div class="buy mt-3"><button class="btn btn-outline-dark btn-block" type="button" style="width:100%;">View Post</button></div>
                 </div>
             </div>
         </a>
