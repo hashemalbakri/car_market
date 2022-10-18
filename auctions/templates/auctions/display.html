@@ -22,7 +22,7 @@
         <div>
             <a href="{% url 'index' %}" style="text-decoration: none; color: white;">
             <h1 class="brand" style="padding-top: 15px;">Tukma</h1>
-        </a>
+             </a>
             
             <a href="#" class="toggle-button">
                 <span class="bar"></span>
@@ -46,8 +46,9 @@
         </div>
         <div class="icons">               
             <i class="icon fa-solid fa-cart-shopping"></i>
+            <a href="{% url 'watchList' %}" style="text-decoration: none; color: white;">
             <i class="icon fa-regular fa-heart"></i>
-
+            </a>
             {% if user.is_authenticated %} 
             <a href="{% url 'logout' %}" style="text-decoration: none; color: white;"><i class="fa-solid fa-right-from-bracket mx-2 logout"></i></a>
             {% else %}
@@ -56,65 +57,73 @@
         </div>
     </nav>
 
-
-    
     <div class="container">
-		<div class="card">
-			<div class="container-fliud">
-				<div class="wrapper row">
-					<div class="preview col-md-6">
-						
-						<div class="preview-pic tab-content">
-						  <div class="tab-pane active" id="pic-1"><img src="{{ item.image.image.url }}" /></div>
-						  <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
-						  <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
-						  <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
-						  <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
-						</div>
-						<ul class="preview-thumbnail nav nav-tabs">
-						  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-						  <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-						  <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-						  <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-						  <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-						</ul>
-						
-					</div>
-					<div class="details col-md-6">
-						<h3 class="product-title">{{ item.name }}</h3>
-						
-						<p class="product-description">{{ item.description }}</p>
-						<h4 class="price">current price: <span>{{ item.price }} $</span></h4>
-                        <h4 class="price">Owner: <span>{{ item.user }} </span></h4>
-                        <h4 class="price">Brand: <span>{{ item.brand }} </span></h4>
-						<!-- <p class="vote"><strong>Owner:  </strong><strong>{{ item.user }}</strong></p>
-						<h5 class="sizes">Brand:
-							<span class="size" data-toggle="tooltip" title="small">{{ item.brand }}</span>
-						</h5> -->
-						<h5 class="colors">Colors:
-						
-							{{item.color}}
-							<!-- <span class="color blue"></span> -->
-						</h5>
-						<div class="action">
-							<button class="add-to-cart btn btn-default" type="button">add to cart</button>
-							<button class="like btn btn-default" type="button"><span class="fa fa-heart"></span></button>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-  </body>
+        <div class="card">
+          <div class="container-fliud">
+            <div class="wrapper row">
+              <div class="preview col-md-6">
+                
+                <div class="preview-pic tab-content">
+                  <div class="tab-pane active" id="pic-1"><img src="{{ item.image.image.url }}" /></div>
+                  <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                  <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                  <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                  <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                </div>
+                <ul class="preview-thumbnail nav nav-tabs">
+                  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                  <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                  <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                  <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                  <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                </ul>
+                
+              </div>
+              <div class="details col-md-6">
+                <h3 class="product-title">{{ item.name }}</h3>
+                
+                <p class="product-description">{{ item.description }}</p>
+                <h4 class="price">current price: <span>{{ item.price }} $</span></h4>
+                            <h4 class="price">Owner: <span>{{ item.user }} </span></h4>
+                            <h4 class="price">Brand: <span>{{ item.brand }} </span></h4>
+                <!-- <p class="vote"><strong>Owner:  </strong><strong>{{ item.user }}</strong></p>
+                <h5 class="sizes">Brand:
+                  <span class="size" data-toggle="tooltip" title="small">{{ item.brand }}</span>
+                </h5> -->
+                <h5 class="colors">Colors:
+                
+                  {{item.color}}
+                  <!-- <span class="color blue"></span> -->
+                </h5>
+                {% if listingInWatch %}
+                               <form action="{% url 'remove' id=item.id %}" method="POST">
+                               {% csrf_token %}
+                                <button type="submit" class="btn btn-danger"><i class="fa-solid fa-heart"></i></button>
+                            </form>
+                               {% else %}
+                            <form action="{% url 'add' id=item.id %}" method="POST">
+                              {% csrf_token %}
+                             <button type="submit" class="btn btn-success"><i class="icon fa-regular fa-heart"></i></button>
+                             </form>
+                             {% endif %}
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
 
-
-<!-- 
-    <h1>{{item.name}}</h1>
-    <p>{{item.user}}</p>
-    <p>{{item.brand}}</p>
-    <p>{{item.color}}</p>
-    <p>{{item.description}}</p>
-    <img src="{{ item.image.image.url }}" alt="image"> -->
-
-</body>
-</html>
+      </body>
+    
+    
+    <!-- 
+        <h1>{{item.name}}</h1>
+        <p>{{item.user}}</p>
+        <p>{{item.brand}}</p>
+        <p>{{item.color}}</p>
+        <p>{{item.description}}</p>
+        <img src="{{ item.image.image.url }}" alt="image"> -->
+    
+    </body>
+    </html>
