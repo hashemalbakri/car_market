@@ -36,7 +36,7 @@ class Color(models.Model):
 
 class PostImages(models.Model):
     image = models.ImageField('image', upload_to="post_imgs/")
-
+ 
     def __str__(self) -> str:
         return f"{self.id}"   
 
@@ -73,5 +73,5 @@ class Comment(models.Model):
     post = models.ForeignKey(Post,models.CASCADE,related_name="comments")
 
     def __str__(self) -> str:
-        return f"{self.post}"
+        return f"{self.user} commented on {self.post}"
         

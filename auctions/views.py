@@ -135,10 +135,14 @@ def display(request,item_id):
     item = Post.objects.get(id = item_id) 
     owner = request.user
     listingInWatch = owner in item.watchList.all()
+    allComments = Comment.objects.filter(post=item_id)
+    postImages = PostImages.objects.filter(image=item_id)
     return render(request,"auctions/display.html",{
         "item":item,
         "user":user,
         "listingInWatch":listingInWatch,
+        "allComments":allComments,
+        "postImages": postImages,
     })
 
 def watchList(request):
@@ -163,3 +167,21 @@ def add(request, id):
 def carwash(request):
     
     return render(request,'auctions/carwash.html')
+
+
+
+def comment(request,id):
+    posts = Post.objects.get(pk=id)
+    owner = request.user
+    message = request.POST['userComment']
+
+    newComment = Comment(
+        user = owner,
+        post = posts,
+        comment = message,
+    )
+    newComment.save()
+
+
+
+    return HttpResponseRedirect(reverse('display', args=(id, )))

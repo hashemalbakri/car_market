@@ -4,7 +4,8 @@
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'styles.css' %}">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 {% endblock %}
@@ -18,22 +19,17 @@
 
                     <div class="preview-pic tab-content">
                         <div class="tab-pane active" id="pic-1"><img src="{{ item.image.image.url }}" /></div>
-                        <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
-                        <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
-                        <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
-                        <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                        {% for item in PostImages %}
+                        <li><a data-target="#pic-2" data-toggle="tab"><img src="{{item.image.image.url}}" /></a>
+                        </li>
+                        {% endfor %}  
                     </div>
                     <ul class="preview-thumbnail nav nav-tabs">
-                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img
-                                    src="http://placekitten.com/200/126" /></a></li>
-                        <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
+                        {% for item in PostImages %}
+                        <li><a data-target="#pic-2" data-toggle="tab"><img src="{{item.image.image.url}}" /></a>
                         </li>
-                        <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
-                        </li>
-                        <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
-                        </li>
-                        <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a>
-                        </li>
+                        {% endfor %}       
+                       
                     </ul>
 
                 </div>
@@ -41,30 +37,35 @@
                     <h3 class="product-title">{{ item.name }}</h3>
 
                     <p class="product-description">{{ item.description }}</p>
-                    <h4 class="price">current price: <span>{{ item.price }} $</span></h4>
-                    <h4 class="price">Owner: <span>{{ item.user }} </span></h4>
-                    <h4 class="price">Brand: <span>{{ item.brand }} </span></h4>
-                    <!-- <p class="vote"><strong>Owner:  </strong><strong>{{ item.user }}</strong></p>
-                    <h5 class="sizes">Brand:
-                        <span class="size" data-toggle="tooltip" title="small">{{ item.brand }}</span>
-                    </h5> -->
-                    <h5 class="colors">Colors:
+                    <h5 class="price">Price: <span>{{ item.price }} $</span></h5>
+                    <h5><b> Owner:</b> <span>{{ item.user }} </span></h5>
+                    <h5><b> Brand:</b><span>{{ item.brand }} </span></h5>
+                    
+                    <h5><b> Color:</b>
 
                         {{item.color}}
-                        <!-- <span class="color blue"></span> -->
+                        
                     </h5>
                     {% if listingInWatch %}
                     <form action="{% url 'remove' id=item.id %}" method="POST">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-danger"><i class="fa-solid fa-heart"></i></button>
+                        <button class="btn btn-outline-danger">Remove form Favorite</button>
                     </form>
                     {% else %}
                     <form action="{% url 'add' id=item.id %}" method="POST">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-success"><i class="icon fa-regular fa-heart"></i></button>
+                        <button class="btn btn-outline-success">Add to Favorite</button>
                     </form>
                     {% endif %}
                 </div>
+                <form action="{% url 'comment' id=item.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="userComment" placeholder="Add comment">
+                    <button type="submit" class="btn btn-primary">Add comment</button>
+                </form>
+                {% for comment in allComments %}
+                <p><b>{{comment.user}}: {{comment.comment}}</b></p>
+                {% endfor %}
             </div>
         </div>
     </div>
