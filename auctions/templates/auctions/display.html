@@ -19,16 +19,17 @@
 
                     <div class="preview-pic tab-content">
                         <div class="tab-pane active" id="pic-1"><img src="{{ item.image.image.url }}" /></div>
-                        {% for item in PostImages %}
-                        <li><a data-target="#pic-2" data-toggle="tab"><img src="{{item.image.image.url}}" /></a>
-                        </li>
-                        {% endfor %}  
+                        <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
                     </div>
                     <ul class="preview-thumbnail nav nav-tabs">
-                        {% for item in PostImages %}
-                        <li><a data-target="#pic-2" data-toggle="tab"><img src="{{item.image.image.url}}" /></a>
-                        </li>
-                        {% endfor %}       
+                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                        <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>  
                        
                     </ul>
 
@@ -58,11 +59,14 @@
                     </form>
                     {% endif %}
                 </div>
+                <div>
+                    <h4 class="my-4">Comments:</h4>
                 <form action="{% url 'comment' id=item.id %}" method="POST">
                     {% csrf_token %}
-                    <input type="text" name="userComment" placeholder="Add comment">
-                    <button type="submit" class="btn btn-primary">Add comment</button>
+                    <input autofocus type="text" name="userComment" placeholder="Add comment" class="form-control my-3" minlength="1">
+                    <button type="submit" class="btn btn-primary">Comment</button>
                 </form>
+                </div>
                 {% for comment in allComments %}
                 <p><b>{{comment.user}}: {{comment.comment}}</b></p>
                 {% endfor %}

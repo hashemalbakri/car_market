@@ -18,7 +18,7 @@
     <div class="mynav">
         <nav class="nav"> 
             <div>
-                <h1 class="brand">Tukma</h1>
+                <h1 class="brand"><a href="{% url 'index' %}" style="text-decoration: none; color:white;">Tukma</a></h1>
                 <a href="#" class="toggle-button">
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -27,7 +27,7 @@
             </div>
             <div>
                 <ul class="links">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="{% url 'index' %}">Home</a></li>
                     <li><a href="#">Shop</a></li>
                     <li><a href="{% url 'carwash' %}">Car Wash</a></li>
                     {% if user.is_authenticated %}
@@ -123,9 +123,8 @@
                 <div class="p-carousel">
                     <div class="carousel slide" data-ride="carousel" id="carousel-1">
                         <div class="carousel-inner" role="listbox">
-                            <div class="carousel-item active"><img class="w-100 d-block" src="{{ item.image.image.url }}" alt="Slide Image"></div>
-                            <div class="carousel-item"><img class="w-100 d-block" src="https://i.imgur.com/DDTs3zs.jpg" alt="Slide Image"></div>
-                            <div class="carousel-item"><img class="w-100 d-block" src="https://i.imgur.com/aFfL7MV.jpg" alt="Slide Image"></div>
+                            <div class="carousel-item active"><img class="w-100 d-block" src="{{ item.image.image.url }}" alt="Slide Image" style="height:350px;"></div>
+                           
                         </div>
                        
                         
