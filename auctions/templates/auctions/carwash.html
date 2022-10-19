@@ -1,0 +1,18 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+{% block title %}CarWash{% endblock %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+
+
+<p id="demo"></p>
+<div id="map" style="height: 400px; width: 50%;"></div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTP_VmiI-UFPa2i0yyqmCyajGWEcvGOAU&callback=getLocation">
+</script>
+
+<script src="{% static 'carwash.js' %}"></script> 
+{% endblock %}
