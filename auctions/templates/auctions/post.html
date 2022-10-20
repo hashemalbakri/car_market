@@ -14,8 +14,8 @@
 {% block body %}
 <section>
   <div>
-    <div class="col-md-12 mb-4">
-      <div class="card mb-4">
+    <div class="col-md-12 mb-4 d-flex justify-content-center">
+      <div class="card mb-4 col-7">
         <div class="card-header py-3 d-flex justify-content-center">
           <h4 class="mb-0" style="text-transform: uppercase;"><b>New Post</b></h4>
         </div>
@@ -24,7 +24,7 @@
             {% csrf_token %}
             <!-- 2 column grid layout with text inputs for the first and last names -->
             <div class="form-outline mb-4">
-              <label class="form-check-label" for="sec1">Brand</label>
+              <label class="form-check-label" for="sec1"><b> Brand</b></label>
               <select name="brand" id="sec1" class="form-select" aria-label="Default select example">
                 <option selected>Model</option>
                 {% for brand in brands %}
@@ -34,12 +34,12 @@
             </div>
 
             <div class="form-outline mb-4">
-              <label class="form-label" for="form6Example3">Car name</label>
+              <label class="form-label" for="form6Example3"><b>Car name</b></label>
               <input name="carName" type="text" id="form6Example3" class="form-control" />
             </div>
 
             <div class="form-outline mb-4">
-              <label class="form-check-label" for="sec1">Model</label>
+              <label class="form-check-label" for="sec1"><b> Model</b></label>
               <select name="model" id="sec1" class="form-select" aria-label="Default select example">
                 <option selected>Model</option>
                 {% for model in models %}
@@ -49,7 +49,7 @@
             </div>
 
             <div class="form-outline mb-4">
-              <label class="form-check-label" for="sec2">Color</label>
+              <label class="form-check-label" for="sec2"><b>Color</b></label>
               <select name="color" id="sec2" class="form-select" aria-label="Default select example">
                 <option selected>Color</option>
                 {% for color in colors %}
@@ -59,7 +59,7 @@
             </div>
 
             <div class="mb-3">
-              <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+              <label for="exampleFormControlTextarea1" class="form-label"><b>Description</b></label>
               <textarea name="description" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
 
@@ -73,7 +73,7 @@
             </div>
 
             <div class="mb-3">
-              <label for="formFileMultiple" class="form-label">Images</label>
+              <label for="formFileMultiple" class="form-label"><b> Images</b></label>
               <input name="image" class="form-control" type="file" id="formFileMultiple" multiple>
             </div>
 
