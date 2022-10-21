@@ -31,22 +31,22 @@ function showPosition(position) {
     y = position.coords.longitude;
     var currentlocation = { lat: x, lng: y };
     map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 8,
+        zoom: 12,
         center: currentlocation
     });
-    // var image = 'static/carwash.png'
-    // var marker = new google.maps.Marker({
-    //     position: currentlocation,
-    //     map: map,
-    //     icon: image,
-    //     tital: "my location"
-    // });
+    var image = 'static/carwash.png'
+    var marker = new google.maps.Marker({
+        position: currentlocation,
+        map: map,
+        tital: "my location"
+    });
 
-    // markers.forEach( function(loc) {
-    //     var mark = new google.maps.Marker({
-    //         position: loc.position,
-    //         title: loc.title,
-    //         map: map,
-    //     })
-    // });
+    markers.forEach( function(loc) {
+        var mark = new google.maps.Marker({
+            position: loc.position,
+            title: loc.title,
+            map: map,
+            icon: image,
+        })
+    });
 }
