@@ -63,7 +63,10 @@
                     <h4 class="my-4">Comments:</h4>
                 <form action="{% url 'comment' id=item.id %}" method="POST">
                     {% csrf_token %}
-                    <input autofocus type="text" name="userComment" placeholder="Add comment" class="form-control my-3" minlength="1">
+                    <div class="inputBox">
+                        <input autofocus type="text" name="userComment" class="my-3" minlength="1">
+                        <label>Comment</label>
+                    </div>
                     <button type="submit" class="btn btn-primary">Comment</button>
                 </form>
                 </div>
