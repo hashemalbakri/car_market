@@ -36,7 +36,7 @@ class Color(models.Model):
 
 class PostImages(models.Model):
     image = models.ImageField('image', upload_to="post_imgs/")
-
+    post = models.ForeignKey('Post', on_delete=models.CASCADE, null=True, related_name="images")
     def __str__(self) -> str:
         return f"{self.id}"   
 
@@ -48,7 +48,6 @@ class Post(models.Model):
     color = models.ForeignKey(Color,models.CASCADE,related_name="posts")
     description = models.TextField()
     categories = models.ForeignKey(Category,models.CASCADE,related_name="posts",null=True)
-    image = models.ForeignKey(PostImages,models.CASCADE,related_name="posts",null=True)
     price = models.FloatField()
     time_create = models.DateTimeField(null=True)
     watchList = models.ManyToManyField(CustomUser,blank=True,null=True,related_name="Watch")
@@ -73,5 +72,5 @@ class Comment(models.Model):
     post = models.ForeignKey(Post,models.CASCADE,related_name="comments")
 
     def __str__(self) -> str:
-        return f"{self.post}"
+        return f"{self.user} commented on {self.post}"
         
