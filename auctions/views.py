@@ -9,15 +9,24 @@ import datetime
 
 
 # Create your views here.
+def search(request):
+    items = Post.objects.all()
+    items = items.filter(
+        # brand__icontains=request.GET.get('brand'),
+        # model__year=request.GET.get('model'),
+        name__icontains=request.GET.get('name'),
+    )
+    return render(request, "auctions/index.html",{
+        "items":items
+    })
 
 def index(request):
     x = []
-    x = Post.objects.all()
-    items = []
-    for item in reversed(x):
-        items.append(item)
+    x = Post.objects.all().order_by('-time_create')
+
+
     return render(request, "auctions/index.html",{
-        "items":items
+        "items":x
     })
 
 
@@ -106,13 +115,10 @@ def save(request):
         colors = Color.objects.get(color=color)
         description = request.POST["description"]
         price = request.POST["price"]
-        image1 = request.FILES["image"]
+        image1 = request.FILES.getlist('image')
+    
         user = request.user
         time = datetime.datetime.now()
-
-        content = PostImages.objects.create(
-            image = image1,
-        )
         
         content = Post.objects.create(
             brand = brand,
@@ -121,9 +127,14 @@ def save(request):
             color = colors,
             description = description,
             price = price,
-            image = content,
             time_create = time,
             user = user
+        )
+
+        for image in image1:
+            PostImages.objects.create(
+            post = content,
+            image = image
         )
         item_id = content.pk
         return display(request,item_id)
@@ -144,6 +155,7 @@ def display(request,item_id):
         "allComments":allComments,
         "postImages": postImages,
     })
+    
 
 def watchList(request):
     fav = request.user.Watch.all()

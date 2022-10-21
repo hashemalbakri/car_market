@@ -8,6 +8,8 @@
     
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'auctions/styles.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
@@ -18,19 +20,21 @@
                 <div class="preview col-md-6">
 
                     <div class="preview-pic tab-content">
-                        <div class="tab-pane active" id="pic-1"><img src="{{ item.image.image.url }}" /></div>
+                        <div class="tab-pane active" id="pic-1"><img src="{{ item.images.first.image.url }}" /></div>
+                        <!-- <div class="tab-pane active" id="pic-1"><img src="{{ item.image.image.url }}" /></div>
                         <div class="tab-pane" id="pic-2"><img src="http://placekitten.com/400/252" /></div>
                         <div class="tab-pane" id="pic-3"><img src="http://placekitten.com/400/252" /></div>
                         <div class="tab-pane" id="pic-4"><img src="http://placekitten.com/400/252" /></div>
-                        <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div>
+                        <div class="tab-pane" id="pic-5"><img src="http://placekitten.com/400/252" /></div> -->
                     </div>
                     <ul class="preview-thumbnail nav nav-tabs">
-                        <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-                        <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
+                        {% for image in item.images.all %}
+                        <li class="clickable_image"><a  data-toggle="tab"><img src="{{image.image.url}}" /></a></li>
+                        <!-- <li><a data-target="#pic-2" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
                         <li><a data-target="#pic-3" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
                         <li><a data-target="#pic-4" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>
-                        <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>  
-                       
+                        <li><a data-target="#pic-5" data-toggle="tab"><img src="http://placekitten.com/200/126" /></a></li>   -->
+                       {% endfor %}
                     </ul>
 
                 </div>
@@ -63,10 +67,7 @@
                     <h4 class="my-4">Comments:</h4>
                 <form action="{% url 'comment' id=item.id %}" method="POST">
                     {% csrf_token %}
-                    <div class="inputBox">
-                        <input autofocus type="text" name="userComment" class="my-3" minlength="1">
-                        <label>Comment</label>
-                    </div>
+                    <input type="text" name="userComment" placeholder="Add comment" class="form-control my-3" minlength="1">
                     <button type="submit" class="btn btn-primary">Comment</button>
                 </form>
                 </div>
@@ -77,4 +78,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
