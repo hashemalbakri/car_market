@@ -28,6 +28,9 @@ class Model(models.Model):
     def __str__(self) -> str:
         return f"{self.year}"  
 
+
+
+
 class Color(models.Model):
     color = models.CharField(max_length=40)
 
@@ -43,14 +46,14 @@ class PostImages(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(CustomUser,models.CASCADE,related_name="posts")
     name = models.CharField(max_length=40)
-    brand = models.CharField(max_length=40)
+    brand = models.CharField(max_length=40,null=True,blank=True)
     model = models.ForeignKey(Model,models.CASCADE,related_name="posts")
     color = models.ForeignKey(Color,models.CASCADE,related_name="posts")
     description = models.TextField()
     categories = models.ForeignKey(Category,models.CASCADE,related_name="posts",null=True)
     price = models.FloatField()
     time_create = models.DateTimeField(null=True)
-    watchList = models.ManyToManyField(CustomUser,blank=True,null=True,related_name="Watch")
+    watchList = models.ManyToManyField(CustomUser,blank=True,related_name="Watch")
 
     def __str__(self) -> str:
         return f"{self.id} {self.name}"

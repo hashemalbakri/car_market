@@ -7,7 +7,7 @@ toggleButton.addEventListener('click', () => {
 
 
 let images = document.querySelectorAll('.clickable_image')
-console.log(images)
+
 for (let index = 0; index < images.length; index++) {
     images[index].addEventListener('click', function(){
         console.log(document.querySelector('#pic-1'))

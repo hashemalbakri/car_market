@@ -58,7 +58,7 @@
         <form action="{% url 'search' %}">
 
         
-        <input type="text" name="name">
+        
         <div class="top-search row d-flex justify-content-around col-12 mx-2">
         <select name="brand" class="col-3 p-3">
             <option value="" selected disabled hidden>Brand</option>
@@ -103,7 +103,10 @@
         
       </div>
       <div class="row d-flex justify-content-center">
-        <button class="btn btn-primary my-3 col-2 d-flex justify-content-center">Search</button>
+        <div class="mybtn d-flex justify-content-center align-items-center">
+            <a href='#'class="btn-1">Search</a>
+        </div>
+        
       </div>
     </form>
     </div>

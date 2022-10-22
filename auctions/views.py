@@ -29,11 +29,6 @@ def index(request):
         "items":x
     })
 
-
-
-
-
-
 def login_view(request):
     if request.method == "POST":
 
@@ -57,9 +52,6 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
-
-
-
 
 def register(request):
     if request.method == "POST":
@@ -156,7 +148,6 @@ def display(request,item_id):
         "postImages": postImages,
     })
     
-
 def watchList(request):
     fav = request.user.Watch.all()
     return render(request,'auctions/watchList.html',{
@@ -180,8 +171,6 @@ def carwash(request):
     
     return render(request,'auctions/carwash.html')
 
-
-
 def comment(request,id):
     posts = Post.objects.get(pk=id)
     owner = request.user
@@ -193,7 +182,5 @@ def comment(request,id):
         comment = message,
     )
     newComment.save()
-
-
 
     return HttpResponseRedirect(reverse('display', args=(id, )))
