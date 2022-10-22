@@ -92,7 +92,11 @@ def register(request):
     else:
         return render(request, "auctions/register.html")
 
-
+def shop(request):
+    posts = Post.objects.all()
+    return render(request,"auctions/shop.html",{
+        "posts": posts,
+    })
 
 
 def newpost(request):

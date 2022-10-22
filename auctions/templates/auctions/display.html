@@ -1,4 +1,4 @@
-{% extends "auctions/layout.html" %}
+
 {% load static %}
 {% block title %}{{item.name}}{% endblock %}
 
@@ -13,6 +13,47 @@
 {% endblock %}
 
 {% block body %}
+<nav style="background-color:#1A0B5B ; height: 80px; padding: 0;"
+        class="d-flex align-items-center justify-content-around">
+        <div>
+            <a href="{% url 'index' %}" style="text-decoration: none; color: white;">
+                <h1 class="brand" style="padding-top: 15px;">Tukma</h1>
+            </a>
+
+            <a href="#" class="toggle-button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>
+        </div>
+        <div>
+            <ul class="links" style="padding-top: 15px;">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'shop' %}">Shop</a></li>
+                <li><a href="{% url 'carwash' %}">Car Wash</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'login' %}">New Post</a></li>
+                {% else %}
+                <li><a href="{% url 'newpost' %}">New Post</a></li>
+                {% endif %}
+                <li><a href="#">Contacts</a></li>
+            </ul>
+        </div>
+        <div class="icons">
+            <a href="{% url 'watchList' %}" style="text-decoration: none; color: white;">
+                <i class="icon fa-regular fa-heart"></i>
+            </a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}" style="text-decoration: none; color: white;">
+                <i class="fa-solid fa-right-from-bracket mx-2 logout"></i>
+            </a>
+            {% else %}
+            <a href="{% url 'login' %}" style="text-decoration: none; color: white;">
+                <i class="icon fa-regular fa-user"></i>
+            </a>
+            {% endif %}
+        </div>
+    </nav>
 <div class="container">
     <div class="card">
         <div class="container-fliud">
@@ -57,11 +98,19 @@
                     {% endif %}
                 </div>
                 <div>
-                    <h4 class="my-4">Comments:</h4>
+                   
                 <form action="{% url 'comment' id=item.id %}" method="POST">
                     {% csrf_token %}
-                    <input type="text" name="userComment" placeholder="Add comment" class="form-control my-3" minlength="1">
-                    <button type="submit" class="btn btn-primary">Comment</button>
+                    <div class="myform">
+                      <input type="text" name="userComment"  required autocomplete="off" class="formInput">
+                      <label for="userComment" class="label-name">
+                        <span class="content-name">
+                            Comment
+                        </span>
+                      </label>
+                    </div>
+                      <button type="submit" class="btn btn-secondary" style="background-color: #1A0B5B; outline: none;">Comment</button>
+                    
                 </form>
                 </div>
                 {% for comment in allComments %}

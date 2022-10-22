@@ -28,7 +28,7 @@
             <div>
                 <ul class="links">
                     <li><a href="{% url 'index' %}">Home</a></li>
-                    <li><a href="#">Shop</a></li>
+                    <li><a href="{% url 'shop' %}">Shop</a></li>
                     <li><a href="{% url 'carwash' %}">Car Wash</a></li>
                     {% if user.is_authenticated %}
                     <li><a href="{% url 'newpost' %}">New Post</a></li>
@@ -77,9 +77,7 @@
             {% for color in colors %}
                  <option value="{{color.color}}">{{color.color}}</option>  
             {% endfor %} 
-            <!-- <option value="car-brand">WHITE</option>  
-            <option value="car-brand">BLACK</option>  
-            <option value="car-brand">BLUE</option>   -->
+         
         </select>
         
         </div>
@@ -87,12 +85,7 @@
         <div class="bottom-search row d-flex justify-content-around col-12">
         <select name="year" class="col-3 p-3">
             <option value="" selected disabled hidden>Model</option>
-            <!-- {% for model in models %}
-                <option value="{{model.year}}">{{model.year}}</option>  
-            {% endfor %}  -->
-            <!-- <option value="car-brand">2016</option>  
-            <option value="car-brand">2020</option>  
-            <option value="car-brand">2022</option>   -->
+            
         </select>
         <select name="model" class="col-3 p-3">
             <option value="" selected disabled hidden>Model</option>

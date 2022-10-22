@@ -16,4 +16,6 @@ urlpatterns = [
    path("carwash",views.carwash,name="carwash"),
    path("comment/<int:id>", views.comment, name="comment"),
    path("search/", views.search, name="search"),
+   path("shop/", views.shop, name="shop"),
+
 ]

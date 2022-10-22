@@ -2,7 +2,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'OdorMeanChey';;
+    font-family: 'OdorMeanChey';
+   
 }
 .mynav{
     width: 100%;
@@ -240,6 +241,63 @@ button {
     }
    
 }
+/* form styles */
+.myform {
+  width: 50%;
+  position: relative;
+  height: 50px;
+  overflow: hidden;
+}
+.myform input {
+  width: 100%;
+  height: 100%;
+  color: #000;
+  padding-top: 20px;
+  border: none;
+  outline: none;
+  padding-bottom: 12px;
+}
+.myform label{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid grey;
+}
+.myform label::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 100%;
+  width: 100%;
+  border-bottom: 3px solid #3e2e87;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+.content-name {
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  transition: all 0.3s ease;
+}
+.myform input:focus + .label-name .content-name,
+ .myform input:valid + .label-name .content-name{
+  transform: translateY(-70%);
+  font-size: 16px;
+  color: #3e2e87;
+}
+
+.myform input:focus + .label-name::after
+, .myform input:valid + .label-name::after{
+  transform: translateX(0%);
+}
+
+/* end of form styles */
+
+
 .post-button{
     margin: auto !important;
     width:200px !important;
@@ -571,4 +629,12 @@ body {
 .service-1 .btn-md {
   padding: 15px 45px;
   font-size: 16px;
+}
+
+/* styles for shop.html */
+
+.h {
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 5px;
 }
