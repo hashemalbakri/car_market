@@ -1,16 +1,18 @@
 from pyexpat import model
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from .models import  Brand, CustomUser, Mileage, Model, Profile, Category, Post, Location,Comment,PostImages,Color
 from django.db import IntegrityError
 import datetime
 from django.db.models import Q
+from django.core.paginator import Paginator
+
 
 # Create your views here.
 def search(request):
-    items = Post.objects.all()
+    items = Post.objects.all()  
     colors = Color.objects.all()
     models = Model.objects.all()
     brands = Brand.objects.all()
@@ -29,24 +31,23 @@ def search(request):
     })
 
 def index(request):
-    x = []
     x = Post.objects.all().order_by('-time_create')
+    p = Paginator(x,6)
+    page = request.GET.get('page')
+    posts = p.get_page(page)
+    numbers = 's' * posts.paginator.num_pages
     colors = Color.objects.all()
     models = Model.objects.all()
     brands = Brand.objects.all()
     mileage = Mileage.objects.all()
     return render(request, "auctions/index.html",{
-        "items":x,
-        "colors":colors,
+        "items":posts,
+        'colors': colors,
         "models":models,
+        "numbers": numbers,
         "brands":brands,
         "mileage":mileage
     })
-
-
-
-
-
 
 def login_view(request):
     if request.method == "POST":
@@ -71,9 +72,6 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse("index"))
-
-
-
 
 def register(request):
     if request.method == "POST":
@@ -104,16 +102,16 @@ def register(request):
         return render(request, "auctions/register.html")
 
 
+
+
 def newpost(request):
     brands = []
-    brands = Brand.objects.all()
+    brands = Category.objects.all()
     models = []
     models = Model.objects.all()
     colors = []
     colors = Color.objects.all()
-    
     return render(request,"auctions/post.html",{
-        
         "brands":brands,
         "models":models,
         "colors":colors
@@ -131,10 +129,8 @@ def save(request):
         description = request.POST["description"]
         price = request.POST["price"]
         image1 = request.FILES.getlist('image')
-    
         user = request.user
-        time = datetime.datetime.now()
-        
+        time = datetime.datetime.now()    
         content = Post.objects.create(
             brand = brand,
             name = carName,
@@ -171,7 +167,6 @@ def display(request,item_id):
         "postImages": postImages,
     })
     
-
 def watchList(request):
     fav = request.user.Watch.all()
     return render(request,'auctions/watchList.html',{
@@ -195,8 +190,6 @@ def carwash(request):
     
     return render(request,'auctions/carwash.html')
 
-
-
 def comment(request,id):
     posts = Post.objects.get(pk=id)
     owner = request.user
@@ -208,7 +201,5 @@ def comment(request,id):
         comment = message,
     )
     newComment.save()
-
-
 
     return HttpResponseRedirect(reverse('display', args=(id, )))

@@ -1,4 +1,5 @@
-const toggleButton = document.querySelector('.toggle-button')
+document.addEventListener('DOMContentLoaded', function(){
+    const toggleButton = document.querySelector('.toggle-button')
 const navbarLinks = document.querySelector('.links')
 
 toggleButton.addEventListener('click', () => {
@@ -7,7 +8,7 @@ toggleButton.addEventListener('click', () => {
 
 
 let images = document.querySelectorAll('.clickable_image')
-console.log(images)
+
 for (let index = 0; index < images.length; index++) {
     images[index].addEventListener('click', function(){
         console.log(document.querySelector('#pic-1'))
@@ -15,5 +16,9 @@ for (let index = 0; index < images.length; index++) {
     });
     
 }
+
+
+
+})
 
 

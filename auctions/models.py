@@ -40,6 +40,9 @@ class Model(models.Model):
     def __str__(self) -> str:
         return f"{self.year}"  
 
+
+
+
 class Color(models.Model):
     color = models.CharField(max_length=40)
 

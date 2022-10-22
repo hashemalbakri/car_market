@@ -58,7 +58,7 @@
         <form action="{% url 'search' %}">
 
         
-        <input type="text" name="name">
+        
         <div class="top-search row d-flex justify-content-around col-12 mx-2">
         <select name="brand" class="col-3 p-3">
             <option value="" selected disabled hidden>Brand</option>
@@ -109,7 +109,10 @@
         
       </div>
       <div class="row d-flex justify-content-center">
-        <button class="btn btn-primary my-3 col-2 d-flex justify-content-center">Search</button>
+        <div class="mybtn d-flex justify-content-center align-items-center">
+            <a href='#'class="btn-1">Search</a>
+        </div>
+        
       </div>
     </form>
     </div>
@@ -160,24 +163,35 @@
     </div>
    
 </div>
-
-
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center" id="pagination">
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1">Previous</a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#">Next</a>
-      </li>
+<div class="pages d-flex justify-content-center">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+  {% if items.has_previous %}
+  <li class="page-item">
+    <a href="?page=1" class="page-link">&laquo First</a>
+  </li>
+  <li class="page-item">
+    <a  class="page-link" href="?page={{ items.previous_page_number}}">Previous</a>
+  </li>
+  {% endif %}
+  {% for i in numbers %}
+  <li class="page-item">
+    <a  class="page-link" href="?page={{ forloop.counter }}">
+    {{ forloop.counter }}
+  </a>
+  </li>
+  {% endfor %}
+  {% if items.has_next %}
+  <li class="page-item">
+   <a  class="page-link" href="?page={{ items.next_page_number }}">Next</a>
+  </li>
+  <li class="page-item">
+   <a  class="page-link" href="?page= {{  items.paginator.num_pages}}">Last &raquo</a>
+  </li>
+   {% endif %}
     </ul>
   </nav>
-
-
-
+</div>
 <div class="bg-white py-5 service-1">
     <div class="container">
       <!-- Row  -->
