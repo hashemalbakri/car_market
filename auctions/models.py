@@ -22,6 +22,18 @@ class Category(models.Model):
     def __str__(self) -> str:
         return f"{self.id} {self.name}"
 
+class Brand(models.Model):
+    brand = models.CharField(max_length=40)
+
+    def __str__(self) -> str:
+        return f"{self.brand}"
+
+class Mileage(models.Model):
+    mileage = models.CharField(max_length=60)
+
+    def __str__(self) -> str:
+        return f"{self.mileage}"
+
 class Model(models.Model):
     year = models.IntegerField()
 
@@ -43,14 +55,15 @@ class PostImages(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(CustomUser,models.CASCADE,related_name="posts")
     name = models.CharField(max_length=40)
-    brand = models.CharField(max_length=40)
+    brand = models.ForeignKey(Brand,models.CASCADE,related_name="posts")
     model = models.ForeignKey(Model,models.CASCADE,related_name="posts")
     color = models.ForeignKey(Color,models.CASCADE,related_name="posts")
+    mileage = models.ForeignKey(Mileage,models.CASCADE,related_name="posts",null=True)
     description = models.TextField()
     categories = models.ForeignKey(Category,models.CASCADE,related_name="posts",null=True)
     price = models.FloatField()
     time_create = models.DateTimeField(null=True)
-    watchList = models.ManyToManyField(CustomUser,blank=True,null=True,related_name="Watch")
+    watchList = models.ManyToManyField(CustomUser,blank=True,related_name="Watch")
 
     def __str__(self) -> str:
         return f"{self.id} {self.name}"

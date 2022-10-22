@@ -3,35 +3,44 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from .models import  CustomUser, Model, Profile, Category, Post, Location,Comment,PostImages,Color
+from .models import  Brand, CustomUser, Mileage, Model, Profile, Category, Post, Location,Comment,PostImages,Color
 from django.db import IntegrityError
 import datetime
-
+from django.db.models import Q
 
 # Create your views here.
 def search(request):
     items = Post.objects.all()
     colors = Color.objects.all()
     models = Model.objects.all()
+    brands = Brand.objects.all()
+    mileage = Mileage.objects.all()
     items = items.filter(
-        # brand__icontains=request.GET.get('brand'),
-        # model__year=request.GET.get('model'),
-        name__icontains=request.GET.get('name'),
+        Q(brand__brand=request.GET.get('brand'))|
+        Q(model__year=request.GET.get('model'))|
+        Q(name__icontains=request.GET.get('name'))
     )
     return render(request, "auctions/index.html",{
         "items":items,
         "colors":colors,
         "models":models,
-        
+        "brands":brands,
+        "mileage":mileage
     })
 
 def index(request):
     x = []
     x = Post.objects.all().order_by('-time_create')
-
-
+    colors = Color.objects.all()
+    models = Model.objects.all()
+    brands = Brand.objects.all()
+    mileage = Mileage.objects.all()
     return render(request, "auctions/index.html",{
-        "items":x
+        "items":x,
+        "colors":colors,
+        "models":models,
+        "brands":brands,
+        "mileage":mileage
     })
 
 
@@ -97,7 +106,7 @@ def register(request):
 
 def newpost(request):
     brands = []
-    brands = Category.objects.all()
+    brands = Brand.objects.all()
     models = []
     models = Model.objects.all()
     colors = []
@@ -113,6 +122,7 @@ def newpost(request):
 def save(request):
     if request.method == "POST":
         brand = request.POST["brand"]
+        brand = Brand.objects.get(brand=brand)
         carName = request.POST["carName"]
         year = request.POST['model']
         model = Model.objects.get(year=year)

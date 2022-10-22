@@ -62,11 +62,11 @@
         <div class="top-search row d-flex justify-content-around col-12 mx-2">
         <select name="brand" class="col-3 p-3">
             <option value="" selected disabled hidden>Brand</option>
-            {% for item in items %}
-                <option value="{{item.brand}}">{{item.brand}}</option>  
+            {% for brand in brands %}
+                <option value="{{brand.brand}}">{{brand.brand}}</option>  
             {% endfor %}
         </select>
-        <select name="name" class="col-3 p-3">
+        <select name="model" class="col-3 p-3">
             <option value="" selected disabled hidden>Model</option>
             {% for model in models %}
                 <option value="{{model.year}}">{{model.year}}</option>  
@@ -86,10 +86,10 @@
         
         <div class="bottom-search row d-flex justify-content-around col-12">
         <select name="year" class="col-3 p-3">
-            <option value="" selected disabled hidden>Model</option>
-            <!-- {% for model in models %}
-                <option value="{{model.year}}">{{model.year}}</option>  
-            {% endfor %}  -->
+            <option value="" selected disabled hidden>Mileage</option>
+            {% for mile in mileage %}
+                <option value="{{mile.mileage}}">{{mile.mileage}}</option>  
+            {% endfor %} 
             <!-- <option value="car-brand">2016</option>  
             <option value="car-brand">2020</option>  
             <option value="car-brand">2022</option>   -->
