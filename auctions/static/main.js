@@ -15,3 +15,5 @@ for (let index = 0; index < images.length; index++) {
     });
     
 }
+
+
