@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
-from .models import CustomUser, Model, Profile, Category, Post, Location,Comment,PostImages,Color
+from .models import  CustomUser, Model, Profile, Category, Post, Location,Comment,PostImages,Color
 from django.db import IntegrityError
 import datetime
 
@@ -11,13 +11,18 @@ import datetime
 # Create your views here.
 def search(request):
     items = Post.objects.all()
+    colors = Color.objects.all()
+    models = Model.objects.all()
     items = items.filter(
         # brand__icontains=request.GET.get('brand'),
         # model__year=request.GET.get('model'),
         name__icontains=request.GET.get('name'),
     )
     return render(request, "auctions/index.html",{
-        "items":items
+        "items":items,
+        "colors":colors,
+        "models":models,
+        
     })
 
 def index(request):

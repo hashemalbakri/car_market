@@ -32,7 +32,7 @@ class Color(models.Model):
     color = models.CharField(max_length=40)
 
     def __str__(self) -> str:
-        return f"{self.color}"  
+        return f"{self.color}" 
 
 class PostImages(models.Model):
     image = models.ImageField('image', upload_to="post_imgs/")
