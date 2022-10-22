@@ -1,16 +1,17 @@
 from pyexpat import model
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
 from .models import  CustomUser, Model, Profile, Category, Post, Location,Comment,PostImages,Color
 from django.db import IntegrityError
 import datetime
+from django.core.paginator import Paginator
 
 
 # Create your views here.
 def search(request):
-    items = Post.objects.all()
+    items = Post.objects.all()  
     colors = Color.objects.all()
     models = Model.objects.all()
     items = items.filter(
@@ -21,17 +22,22 @@ def search(request):
     return render(request, "auctions/index.html",{
         "items":items,
         "colors":colors,
-        "models":models,
-        
+        "models":models,   
     })
 
 def index(request):
-    x = []
     x = Post.objects.all().order_by('-time_create')
-
-
+    p = Paginator(x,6)
+    page = request.GET.get('page')
+    posts = p.get_page(page)
+    numbers = 's' * posts.paginator.num_pages
+    colors = Color.objects.all()
+    models = Model.objects.all()
     return render(request, "auctions/index.html",{
-        "items":x
+        "items":posts,
+        'colors': colors,
+        "models":models,
+        "numbers": numbers
     })
 
 def login_view(request):
@@ -87,16 +93,13 @@ def register(request):
         return render(request, "auctions/register.html")
 
 
+
+
 def newpost(request):
-    brands = []
     brands = Category.objects.all()
-    models = []
-    models = Model.objects.all()
-    colors = []
+    models = Model.objects.all()    
     colors = Color.objects.all()
-    
     return render(request,"auctions/post.html",{
-        
         "brands":brands,
         "models":models,
         "colors":colors
@@ -113,10 +116,8 @@ def save(request):
         description = request.POST["description"]
         price = request.POST["price"]
         image1 = request.FILES.getlist('image')
-    
         user = request.user
-        time = datetime.datetime.now()
-        
+        time = datetime.datetime.now()    
         content = Post.objects.create(
             brand = brand,
             name = carName,

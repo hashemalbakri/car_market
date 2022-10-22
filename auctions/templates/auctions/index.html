@@ -163,24 +163,35 @@
     </div>
    
 </div>
-
-
-<nav aria-label="Page navigation example">
-    <ul class="pagination justify-content-center" id="pagination">
-      <li class="page-item disabled">
-        <a class="page-link" href="#" tabindex="-1">Previous</a>
-      </li>
-      <li class="page-item"><a class="page-link" href="#">1</a></li>
-      <li class="page-item"><a class="page-link" href="#">2</a></li>
-      <li class="page-item"><a class="page-link" href="#">3</a></li>
-      <li class="page-item">
-        <a class="page-link" href="#">Next</a>
-      </li>
+<div class="pages d-flex justify-content-center">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+  {% if items.has_previous %}
+  <li class="page-item">
+    <a href="?page=1" class="page-link">&laquo First</a>
+  </li>
+  <li class="page-item">
+    <a  class="page-link" href="?page={{ items.previous_page_number}}">Previous</a>
+  </li>
+  {% endif %}
+  {% for i in numbers %}
+  <li class="page-item">
+    <a  class="page-link" href="?page={{ forloop.counter }}">
+    {{ forloop.counter }}
+  </a>
+  </li>
+  {% endfor %}
+  {% if items.has_next %}
+  <li class="page-item">
+   <a  class="page-link" href="?page={{ items.next_page_number }}">Next</a>
+  </li>
+  <li class="page-item">
+   <a  class="page-link" href="?page= {{  items.paginator.num_pages}}">Last &raquo</a>
+  </li>
+   {% endif %}
     </ul>
   </nav>
-
-
-
+</div>
 <div class="bg-white py-5 service-1">
     <div class="container">
       <!-- Row  -->

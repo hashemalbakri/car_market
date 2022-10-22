@@ -1,4 +1,5 @@
-const toggleButton = document.querySelector('.toggle-button')
+document.addEventListener('DOMContentLoaded', function(){
+    const toggleButton = document.querySelector('.toggle-button')
 const navbarLinks = document.querySelector('.links')
 
 toggleButton.addEventListener('click', () => {
@@ -15,5 +16,9 @@ for (let index = 0; index < images.length; index++) {
     });
     
 }
+
+
+
+})
 
 
