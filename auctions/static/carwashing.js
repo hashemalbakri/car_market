@@ -50,3 +50,24 @@ function showPosition(position) {
         })
     });
 }
+
+
+function toStoreLocation() {navigator.geolocation.getCurrentPosition(storeLocation);}
+function storeLocation(locat) {
+    x = locat.coords.latitude;
+    y = locat.coords.longitude;
+    // const dict_values = {x, y};
+    var thisLocation = {
+        'lat': x,
+        'long': y
+        }
+    const s = JSON.stringify(thisLocation);
+    console.log(s);
+    fetch("/test",{
+        method:"POST",
+        headers: {
+    'Accept': 'application/json, text/plain, /',
+    'Content-Type': 'application/json'},
+        body: s ,
+    });
+}

@@ -3,6 +3,7 @@
 {% block title %}CarWash{% endblock %}
 
 {% block head %}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 {% endblock %}
 
 {% block body %}
@@ -14,6 +15,9 @@
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTP_VmiI-UFPa2i0yyqmCyajGWEcvGOAU&callback=getLocation">
 </script>
 
+<form action="" method="POST">{% csrf_token %}
+    <input type="button" value="input" onclick="toStoreLocation()">
+</form>
 
 <script src="{% static 'carwashing.js' %}"></script> 
 {% endblock %}

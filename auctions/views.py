@@ -8,6 +8,14 @@ from django.db import IntegrityError
 import datetime
 from django.core.paginator import Paginator
 
+import json
+from flask import request
+from flask import Flask, render_template, jsonify
+import sys
+app = Flask(__name__)
+
+from django.views.decorators.csrf import csrf_exempt
+
 
 # Create your views here.
 def search(request):
@@ -194,3 +202,17 @@ def comment(request,id):
     newComment.save()
 
     return HttpResponseRedirect(reverse('display', args=(id, )))
+
+@csrf_exempt
+def test(request):
+    output = json.loads(request.body)
+    output = json.loads(output)
+    print(output)
+    content = Location.objects.create(
+        x = output.get("x",""),
+        y = output.get("y",""),
+        user = request.user,
+        name = "test",
+    )
+    return HttpResponse ("")
+    
