@@ -1,18 +1,19 @@
 var z = document.getElementById("demo");
 var x;
 var y;
+
 var map;
 var markers = [
     {
-        position: {lat: 33.398165, lng: 44.3960218},
-        title:'first'
+        position: { lat: 33.398165, lng: 44.3960218 },
+        title: 'first'
     },
     {
-        position: {lat: 33.3676544, lng: 44.3580416},
+        position: { lat: 33.3676544, lng: 44.3580416 },
         title: 'second'
     },
     {
-        position: {lat: 33.3364, lng: 44.4004},
+        position: { lat: 33.3364, lng: 44.4004 },
         title: 'third'
     }
 ];
@@ -41,7 +42,7 @@ function showPosition(position) {
         tital: "my location"
     });
 
-    markers.forEach( function(loc) {
+    markers.forEach(function (loc) {
         var mark = new google.maps.Marker({
             position: loc.position,
             title: loc.title,
@@ -52,22 +53,25 @@ function showPosition(position) {
 }
 
 
-function toStoreLocation() {navigator.geolocation.getCurrentPosition(storeLocation);}
+function toStoreLocation() { navigator.geolocation.getCurrentPosition(storeLocation); }
 function storeLocation(locat) {
     x = locat.coords.latitude;
     y = locat.coords.longitude;
-    // const dict_values = {x, y};
+    const title = document.querySelector("#title").value;
     var thisLocation = {
         'lat': x,
-        'long': y
-        }
+        'long': y,
+        // title: title,
+    }
+    console.log(thisLocation);
     const s = JSON.stringify(thisLocation);
     console.log(s);
-    fetch("/test",{
-        method:"POST",
+    fetch("/test", {
+        method: "POST",
         headers: {
-    'Accept': 'application/json, text/plain, /',
-    'Content-Type': 'application/json'},
-        body: s ,
+            'Accept': 'application/json, text/plain, /',
+            'Content-Type': 'application/json'
+        },
+        body: s,
     });
 }

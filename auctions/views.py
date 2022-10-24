@@ -209,9 +209,10 @@ def test(request):
     output = json.loads(output)
     print(output)
     content = Location.objects.create(
-        x = output.get("x",""),
-        y = output.get("y",""),
+        x = output.get("lat",""),
+        y = output.get("long",""),
         user = request.user,
+        # name = output.get("title",""),
         name = "test",
     )
     return HttpResponse ("")
