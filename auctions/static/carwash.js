@@ -59,9 +59,9 @@ function storeLocation(locat) {
     y = locat.coords.longitude;
     const title = document.querySelector("#title").value;
     var thisLocation = {
-        'lat': x,
-        'long': y,
-        // title: title,
+        "lat": x,
+        "long": y,
+        "title": title,
     }
     console.log(thisLocation);
     const s = JSON.stringify(thisLocation);

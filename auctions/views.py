@@ -205,15 +205,17 @@ def comment(request,id):
 
 @csrf_exempt
 def test(request):
-    output = json.loads(request.body)
-    output = json.loads(output)
-    print(output)
-    content = Location.objects.create(
-        x = output.get("lat",""),
-        y = output.get("long",""),
+    data = json.loads(request.body)
+    print(data)
+    x = data.get("lat","")
+    y = data.get("long","")
+    title = data.get("title","")
+    content = Location(
+        x = x,
+        y = y,
         user = request.user,
-        # name = output.get("title",""),
-        name = "test",
+        name = title,
     )
+    content.save()
     return HttpResponse ("")
     

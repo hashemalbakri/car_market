@@ -16,9 +16,9 @@
 </script>
 
 <form action="" method="POST">{% csrf_token %}
-    name : <input type="text" id="title" class="title" name="fname">
+    name : <input type="text" id="title">
     <input type="button" value="input" onclick="toStoreLocation()">
 </form>
 
-<script src="{% static 'carwashing.js' %}"></script> 
+<script src="{% static 'carwash.js' %}"></script> 
 {% endblock %}
