@@ -66,6 +66,14 @@ class Location(models.Model):
 
     def __str__(self) -> str:
         return f"{self.id} {self.name}"
+    
+    def serialize(self):
+            return {
+                "user": self.user.email,
+                "name": self.name,
+                "lat": self.x,
+                "long": self.y,
+            }
 
 
 

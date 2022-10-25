@@ -18,6 +18,7 @@
 <form action="" method="POST">{% csrf_token %}
     name : <input type="text" id="title">
     <input type="button" value="input" onclick="toStoreLocation()">
+    <br><input type="button" value="get all locations" onclick="toShowLocations()">
 </form>
 
 <script src="{% static 'carwash.js' %}"></script> 

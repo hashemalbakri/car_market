@@ -15,6 +15,8 @@ import sys
 app = Flask(__name__)
 
 from django.views.decorators.csrf import csrf_exempt
+from django.core.serializers import serialize
+
 
 
 # Create your views here.
@@ -188,6 +190,14 @@ def add(request, id):
 def carwash(request):
     
     return render(request,'auctions/carwash.html')
+
+@csrf_exempt
+def getlocations(request):
+    locations = Location.objects.all()
+    # allLocations = json.dumps(data)
+    print(locations)
+    # print(allLocations)
+    return JsonResponse([location.serialize() for location in locations],safe=False)
 
 def comment(request,id):
     posts = Post.objects.get(pk=id)
