@@ -18,7 +18,6 @@ urlpatterns = [
    path("search/", views.search, name="search"),
    path("shop/", views.shop, name="shop"),
    path("test", views.test, name="test"),
-   path("carwash/locations",views.getlocations,name="locations"),
-   path("loc",views.getlocations,name="loc"),
+   path("loc/",views.getlocations,name="loc"),
    
 ]
