@@ -194,9 +194,6 @@ def carwash(request):
 @csrf_exempt
 def getlocations(request):
     locations = Location.objects.all()
-    # allLocations = json.dumps(data)
-    print(locations)
-    # print(allLocations)
     return JsonResponse([location.serialize() for location in locations],safe=False)
 
 def comment(request,id):
@@ -214,7 +211,7 @@ def comment(request,id):
     return HttpResponseRedirect(reverse('display', args=(id, )))
 
 @csrf_exempt
-def test(request):
+def saveLoc(request):
     data = json.loads(request.body)
     print(data)
     x = data.get("lat","")
