@@ -17,7 +17,7 @@ urlpatterns = [
    path("comment/<int:id>", views.comment, name="comment"),
    path("search/", views.search, name="search"),
    path("shop/", views.shop, name="shop"),
-   path("test", views.test, name="test"),
+   path("saveLoc", views.saveLoc, name="saveLoc"),
    path("loc/",views.getlocations,name="loc"),
    
 ]

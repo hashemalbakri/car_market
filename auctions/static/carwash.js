@@ -75,7 +75,7 @@ function storeLocation(locat) {
     console.log(thisLocation);
     const s = JSON.stringify(thisLocation);
     console.log(s);
-    fetch("/test", {
+    fetch("/saveLoc", {
         method: "POST",
         headers: {
             'Accept': 'application/json, text/plain, /',
