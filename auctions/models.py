@@ -1,4 +1,5 @@
 
+from email.policy import default
 from tkinter import CASCADE
 from django.db import models
 
@@ -17,10 +18,21 @@ class Profile(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=40)
-    image = models.ImageField('image', upload_to="category_imgs/")
 
     def __str__(self) -> str:
-        return f"{self.id} {self.name}"
+        return f"{self.name}"
+
+class Brand(models.Model):
+    brand = models.CharField(max_length=40)
+
+    def __str__(self) -> str:
+        return f"{self.brand}"
+
+class Mileage(models.Model):
+    mileage = models.CharField(max_length=60)
+
+    def __str__(self) -> str:
+        return f"{self.mileage}"
 
 class Model(models.Model):
     year = models.IntegerField()
@@ -46,14 +58,17 @@ class PostImages(models.Model):
 class Post(models.Model):
     user = models.ForeignKey(CustomUser,models.CASCADE,related_name="posts")
     name = models.CharField(max_length=40)
-    brand = models.CharField(max_length=40,null=True,blank=True)
+    brand = models.ForeignKey(Brand,models.CASCADE,related_name="posts",default = None)
     model = models.ForeignKey(Model,models.CASCADE,related_name="posts")
     color = models.ForeignKey(Color,models.CASCADE,related_name="posts")
+    mileage = models.ForeignKey(Mileage,models.CASCADE,related_name="posts",null=True)
     description = models.TextField()
     categories = models.ForeignKey(Category,models.CASCADE,related_name="posts",null=True)
     price = models.FloatField()
     time_create = models.DateTimeField(null=True)
     watchList = models.ManyToManyField(CustomUser,blank=True,related_name="Watch")
+    phoneNumber = models.IntegerField(default = None)
+    social = models.CharField(max_length = 80 ,default = None)
 
     def __str__(self) -> str:
         return f"{self.id} {self.name}"
@@ -76,4 +91,11 @@ class Comment(models.Model):
 
     def __str__(self) -> str:
         return f"{self.user} commented on {self.post}"
-        
+
+class Contact(models.Model):
+    name = models.CharField(max_length = 40)
+    email = models.EmailField(max_length = 60)
+    message = models.TextField()
+
+    def __str__(self) -> str:
+        return f"{self.name}"   
