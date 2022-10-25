@@ -630,11 +630,3 @@ body {
   padding: 15px 45px;
   font-size: 16px;
 }
-
-/* styles for shop.html */
-
-.h {
-  text-transform: uppercase;
-  font-weight: 600;
-  letter-spacing: 5px;
-}

@@ -79,21 +79,24 @@
                     <h5 class="price">Price: <span>{{ item.price }} $</span></h5>
                     <h5><b> Owner:</b> <span>{{ item.user }} </span></h5>
                     <h5><b> Brand:</b><span>{{ item.brand }} </span></h5>
+                    <h5><b> Category:</b><span>{{ item.categories }} </span></h5>
                     
                     <h5><b> Color:</b>
 
                         {{item.color}}
                         
                     </h5>
+                    <div><i class="fa-solid fa-phone"></i>  {{item.phoneNumber}}</div>
+                    <div><i class="fa-brands fa-facebook"></i>  {{item.social}}</div>
                     {% if listingInWatch %}
                     <form action="{% url 'remove' id=item.id %}" method="POST">
                         {% csrf_token %}
-                        <button class="btn btn-outline-danger">Remove form Favorite</button>
+                        <button class="btn btn-outline-danger"><i class="fa-solid fa-heart"></i></button>
                     </form>
                     {% else %}
                     <form action="{% url 'add' id=item.id %}" method="POST">
                         {% csrf_token %}
-                        <button class="btn btn-outline-success">Add to Favorite</button>
+                        <button class="btn btn-outline-success"><i class="fa-regular fa-heart"></i></button>
                     </form>
                     {% endif %}
                 </div>

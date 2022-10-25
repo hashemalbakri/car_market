@@ -20,4 +20,6 @@ urlpatterns = [
    path("saveLoc", views.saveLoc, name="saveLoc"),
    path("loc/",views.getlocations,name="loc"),
    
+
+   path("contact/", views.contact, name="contact"),
 ]
