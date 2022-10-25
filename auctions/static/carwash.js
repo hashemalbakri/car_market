@@ -90,7 +90,7 @@ function showLocations(pos) {
             icon: image,
         })
     });
-    
+
 }
 
 function toStoreLocation() { navigator.geolocation.getCurrentPosition(storeLocation); }
