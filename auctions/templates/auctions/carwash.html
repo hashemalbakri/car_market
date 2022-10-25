@@ -16,9 +16,11 @@
 </script>
 
 <form action="" method="POST">{% csrf_token %}
-    name : <input type="text" id="title">
-    <input type="button" value="input" onclick="toStoreLocation()">
-    <br><input type="button" value="get all locations" onclick="toShowLocations()">
+    name : <input type="text" id="title"><br>
+    Latitude : <input type="text" id="lat"><br>
+    Longitude : <input type="text" id="long"><br>
+    <input type="button" value="input" onclick="toStoreLocation()"><br>
+    <input type="button" value="get all locations" onclick="toShowLocations()">
 </form>
 
 <script src="{% static 'carwash.js' %}"></script> 

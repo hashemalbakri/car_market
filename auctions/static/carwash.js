@@ -64,9 +64,13 @@ function showLocations(pos) {
 
 function toStoreLocation() { navigator.geolocation.getCurrentPosition(storeLocation); }
 function storeLocation(locat) {
-    x = locat.coords.latitude;
-    y = locat.coords.longitude;
     const title = document.querySelector("#title").value;
+    x = document.querySelector("#lat").value;
+    y = document.querySelector("#long").value;
+    if ( x == "" || y == ""){
+        x = locat.coords.latitude;
+        y = locat.coords.longitude;
+    }
     var thisLocation = {
         "lat": x,
         "long": y,
