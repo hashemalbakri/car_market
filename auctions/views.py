@@ -1,9 +1,10 @@
 from pyexpat import model
+from unicodedata import category
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.urls import reverse
-from .models import  Brand, CustomUser, Mileage, Model, Profile, Category, Post, Location,Comment,PostImages,Color
+from .models import  Brand, Contact, CustomUser, Mileage, Model, Profile, Category, Post, Location,Comment,PostImages,Color
 from django.db import IntegrityError
 import datetime
 from django.db.models import Q
@@ -17,17 +18,31 @@ def search(request):
     models = Model.objects.all()
     brands = Brand.objects.all()
     mileage = Mileage.objects.all()
-    items = items.filter(
-        Q(brand__brand=request.GET.get('brand'))|
-        Q(model__year=request.GET.get('model'))|
-        Q(name__icontains=request.GET.get('name'))
-    )
+    category = Category.objects.all()
+    # items = items.filter(
+    #     Q(brand__brand=request.GET.get('brand'))|
+    #     Q(model__year=request.GET.get('model'))|
+    #     Q(name__icontains=request.GET.get('name'))
+    # )
+    if request.GET.get('brand'):
+        items = items.filter(brand__brand=request.GET.get('brand'))
+    if request.GET.get('model'):
+     items = items.filter(model__year=request.GET.get('model'))
+    if request.GET.get('color'):
+        items = items.filter(color__color=request.GET.get('color'))
+    if request.GET.get('mileage'):
+        items = items.filter(mileage__mileage=request.GET.get('mileage'))
+    if request.GET.get('category'):
+        items = items.filter(category__name=request.GET.get('category'))
+    if request.GET.get('name'):
+        items = items.filter(name__icontains=request.GET.get('name'))
     return render(request, "auctions/index.html",{
         "items":items,
         "colors":colors,
         "models":models,
         "brands":brands,
-        "mileage":mileage
+        "mileage":mileage,
+        "category":category,
     })
 
 def index(request):
@@ -40,13 +55,15 @@ def index(request):
     models = Model.objects.all()
     brands = Brand.objects.all()
     mileage = Mileage.objects.all()
+    category = Category.objects.all()
     return render(request, "auctions/index.html",{
         "items":posts,
         'colors': colors,
         "models":models,
         "numbers": numbers,
         "brands":brands,
-        "mileage":mileage
+        "mileage":mileage,
+        "category":category
     })
 
 def login_view(request):
@@ -106,15 +123,18 @@ def register(request):
 
 def newpost(request):
     brands = []
-    brands = Category.objects.all()
+    brands = Brand.objects.all()
     models = []
     models = Model.objects.all()
     colors = []
     colors = Color.objects.all()
+    category = []
+    category = Category.objects.all()
     return render(request,"auctions/post.html",{
         "brands":brands,
         "models":models,
-        "colors":colors
+        "colors":colors,
+        "category":category
     })
 
 def save(request):
@@ -126,6 +146,10 @@ def save(request):
         model = Model.objects.get(year=year)
         color = request.POST["color"]
         colors = Color.objects.get(color=color)
+        cate = request.POST['category']
+        category = Category.objects.get(name=cate)
+        phone = request.POST["phone"]
+        facebook = request.POST["facebook"]
         description = request.POST["description"]
         price = request.POST["price"]
         image1 = request.FILES.getlist('image')
@@ -136,10 +160,13 @@ def save(request):
             name = carName,
             model = model,
             color = colors,
+            categories = category,
             description = description,
             price = price,
             time_create = time,
-            user = user
+            user = user,
+            phoneNumber = phone,
+            social = facebook,
         )
 
         for image in image1:
@@ -203,3 +230,16 @@ def comment(request,id):
     newComment.save()
 
     return HttpResponseRedirect(reverse('display', args=(id, )))
+
+def contact(request):
+    if request.method =="POST":
+        name = request.POST['name']
+        email = request.POST['email']
+        message = request.POST['message']
+
+        contact = Contact.objects.create(
+        name = name,
+        email = email,
+        message = message
+        )
+    return render(request,"auctions/contact.html")

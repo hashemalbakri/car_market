@@ -26,7 +26,7 @@
             <div class="form-outline mb-4">
               <label class="form-check-label" for="sec1"><b> Brand</b></label>
               <select name="brand" id="sec1" class="form-select" aria-label="Default select example">
-                <option selected>Brand</option>
+                <option selected disabled hidden>Brand</option>
                 {% for brand in brands %}
                 <option value="{{brand.brand}}">{{brand.brand}}</option>
                 {% endfor %}
@@ -41,7 +41,7 @@
             <div class="form-outline mb-4">
               <label class="form-check-label" for="sec1"><b> Model</b></label>
               <select name="model" id="sec1" class="form-select" aria-label="Default select example">
-                <option selected>Model</option>
+                <option selected disabled hidden>Model</option>
                 {% for model in models %}
                 <option value="{{model.year}}">{{model.year}}</option>
                 {% endfor %}
@@ -51,11 +51,32 @@
             <div class="form-outline mb-4">
               <label class="form-check-label" for="sec2"><b>Color</b></label>
               <select name="color" id="sec2" class="form-select" aria-label="Default select example">
-                <option selected>Color</option>
+                <option selected disabled hidden>Color</option>
                 {% for color in colors %}
                 <option value="{{color.color}}">{{color.color}}</option>
                 {% endfor %}
               </select>
+            </div>
+
+
+            <div class="form-outline mb-4">
+              <label class="form-check-label" for="sec2"><b>Category</b></label>
+              <select name="category" id="sec2" class="form-select" aria-label="Default select example">
+                <option selected disabled hidden>Category</option>
+                {% for cate in category %}
+                <option value="{{cate.name}}">{{cate.name}}</option>
+                {% endfor %}
+              </select>
+            </div>
+
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form6Example3"><b>Phone Number</b></label>
+              <input name="phone" type="text" id="form6Example3" class="form-control" />
+            </div>
+
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form6Example3"><b>Facebook username</b></label>
+              <input name="facebook" type="text" id="form6Example3" class="form-control" />
             </div>
 
             <div class="mb-3">
